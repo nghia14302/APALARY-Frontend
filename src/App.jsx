@@ -1,11 +1,12 @@
 import './App.css';
+import LayoutManager from './components/Layout';
 import AppRoutes from './routes';
 
 function App() {
 	return (
-		<div className='App'>
+		<LayoutManager>
 			<AppRoutes />
-		</div>
+		</LayoutManager>
 	);
 }
 
