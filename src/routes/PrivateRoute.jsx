@@ -2,13 +2,15 @@ import React from 'react';
 
 import { Navigate, Outlet } from 'react-router';
 
+import randomUserApi from '../utils/Theme/Apis/randomUserApi';
+
 const PrivateRoute = (props) => {
 	const { role } = props;
-	const fakeUser = {
-		name: 'fake',
-		token: '',
-		role: 'manager',
-	};
+	const fakeUser = (async () => {
+		const user = await randomUserApi.get();
+		console.log(user);
+		return user;
+	})();
 	if (!fakeUser.token || fakeUser.token === '') {
 		return <Navigate to='/error/401' />;
 	}
