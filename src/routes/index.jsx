@@ -1,5 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 
+import { routeKey } from '../components/Layout/ManagerItems';
+import ErrorPage from '../pages/Errors';
 import Home from '../pages/Home';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
@@ -7,34 +9,40 @@ import PublicRoute from './PublicRoute';
 // public routes here
 const publicRoutes = [
 	{
-		path: '/',
+		path: routeKey.dashBoard,
 		Element: <Home />,
 		role: 'everyone',
 	},
 ];
 
 // private routes here
-const privateRoutes = [
+const managerRoutes = [
 	{
 		path: '/admin',
 		Element: <Home />,
-		role: 'admin',
+		role: 'manager',
+	},
+	{
+		path: routeKey.employeesAll,
+		Element: <Home />,
+		role: 'asdafd',
 	},
 ];
 
 const AppRoutes = () => {
 	return (
 		<Routes>
-			<Route path={''} elements={<PublicRoute />}>
+			<Route path={''} element={<PublicRoute role='everyone' />}>
 				{publicRoutes.map((route, index) => (
 					<Route key={index} element={route.Element} path={route.path} />
 				))}
 			</Route>
-			<Route path={''} elements={<PrivateRoute />}>
-				{privateRoutes.map((route, index) => (
+			<Route path={''} element={<PrivateRoute role='manager' />}>
+				{managerRoutes.map((route, index) => (
 					<Route key={index} element={route.Element} path={route.path} />
 				))}
 			</Route>
+			<Route path={'/error/:statusCode'} element={<ErrorPage />} />
 		</Routes>
 	);
 };

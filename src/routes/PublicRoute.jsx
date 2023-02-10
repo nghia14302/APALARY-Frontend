@@ -9,7 +9,7 @@ const PublicRoute = (props) => {
 		token: null,
 		role: role,
 	};
-	if (!fakeUser.token || fakeUser.role === 'everone') {
+	if (!fakeUser.token || fakeUser.role === 'everyone') {
 		return <Outlet />;
 	}
 	return <Navigate to='/login' />;
