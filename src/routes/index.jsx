@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
 import { routeKey } from '../components/Layout/ManagerItems';
 import ErrorPage from '../pages/Errors';
@@ -43,6 +43,7 @@ const AppRoutes = () => {
 				))}
 			</Route>
 			<Route path={'/error/:statusCode'} element={<ErrorPage />} />
+			<Route path={'*'} element={<Navigate to='/error/404' />} />
 		</Routes>
 	);
 };
