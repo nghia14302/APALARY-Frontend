@@ -28,23 +28,38 @@ jobs:
     
     - name: GitHub Action for Yarn
       uses: Borales/actions-yarn@v4.2.0
-
-    - name: Run install
-      uses: borales/actions-yarn@v4
+    - name: Yarn Setup
+      # You may pin to the exact commit or the version.
+      # uses: DerYeger/yarn-setup-action@f55be5383ea94f5eb25b20aee609af4603a68dde
+      uses: DerYeger/yarn-setup-action@v1.0.1
       with:
-        cmd: install # will run `yarn install` command
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} # if needed
-    - name: Build production bundle
-      uses: borales/actions-yarn@v4
-      with:
-        cmd: build:prod # will run `yarn build:prod` command
-    - name: Test the app
-      uses: borales/actions-yarn@v4
-      with:
-        cmd: test # will run `yarn test` command
-    - name: Run test in sub-folder
-      uses: borales/actions-yarn@v4
-      with:
-        cmd: test
-        dir: 'src'
+        # The version of Node.js that will be used
+        node-version: ${{matrix.node-version}}
+        
+    - name: run install
+      run: yarn install
+      
+    - name: run build
+      run: yarn build
+    
+    - name: run test
+      run: yarn test
+#     - name: Run install
+#       uses: borales/actions-yarn@v4
+#       with:
+#         cmd: install # will run `yarn install` command
+#       env:
+#         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} # if needed
+#     - name: Build production bundle
+#       uses: borales/actions-yarn@v4
+#       with:
+#         cmd: build:prod # will run `yarn build:prod` command
+#     - name: Test the app
+#       uses: borales/actions-yarn@v4
+#       with:
+#         cmd: test # will run `yarn test` command
+#     - name: Run test in sub-folder
+#       uses: borales/actions-yarn@v4
+#       with:
+#         cmd: test
+#         dir: 'src'
