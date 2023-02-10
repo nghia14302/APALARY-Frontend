@@ -3,8 +3,24 @@ import {
 	ContainerOutlined,
 	MenuFoldOutlined,
 	PieChartOutlined,
+	SendOutlined,
+	UsergroupAddOutlined,
 	UserOutlined,
 } from '@ant-design/icons';
+
+export const routeKey = {
+	dashBoard: '/dashboard',
+	employees: '/employees',
+	employeesAll: '/employees/all',
+	employeesContracts: '/employees/contracts',
+	employeesSalaries: '/employees/salaries',
+	applications: '/application',
+	applicationSalaryIncreasing: '/application/salary-increasing',
+	applicationDayLeave: '/application/day-leave',
+	applicationRecruitment: '/application/recruitment',
+	posts: '/posts',
+	applicants: '/applicants',
+};
 
 const getItem = (label, key, icon, children, type) => {
 	return {
@@ -16,17 +32,17 @@ const getItem = (label, key, icon, children, type) => {
 	};
 };
 export const managerItems = [
-	getItem('Dashboard', 'managerDashboard', <PieChartOutlined />),
-	getItem('Employees', 'managerSubEmployees', <UserOutlined />, [
-		getItem('All', '3'),
-		getItem('Contracts', '4'),
-		getItem('Salaries', '5'),
+	getItem('Dashboard', routeKey.dashBoard, <PieChartOutlined />),
+	getItem('Employees', routeKey.employees, <UserOutlined />, [
+		getItem('All', routeKey.employeesAll),
+		getItem('Contracts', routeKey.employeesContracts),
+		getItem('Salaries', routeKey.employeesSalaries),
 	]),
-	getItem('Applications', 'managerApplications;', <MenuFoldOutlined />, [
-		getItem('Salary increasing', '6'),
-		getItem('Day leave', '7'),
-		getItem('Recruitment Requests', '8'),
+	getItem('Applications', routeKey.applications, <MenuFoldOutlined />, [
+		getItem('Salary increasing', routeKey.applicationSalaryIncreasing),
+		getItem('Day leave', routeKey.applicationDayLeave),
+		getItem('Recruitment', routeKey.applicationRecruitment),
 	]),
-	getItem('Posts', 'managerPosts', <PieChartOutlined />),
-	getItem('Applicants', 'managerApplicants', <PieChartOutlined />),
+	getItem('Posts', routeKey.posts, <SendOutlined />),
+	getItem('Applicants', routeKey.applicants, <UsergroupAddOutlined />),
 ];
