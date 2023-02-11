@@ -1,12 +1,37 @@
+import { useEffect, useState } from 'react';
+
 import './App.css';
-import LayoutManager from './components/Layout';
+import LayoutEveryone from './components/Layout/LayoutEveryone';
+import LayoutManager from './components/Layout/LayoutManager';
 import AppRoutes from './routes';
 
+import ErrorBoundary from 'antd/es/alert/ErrorBoundary';
+
 function App() {
+	const fakeUser = {
+		name: 'asv',
+		token: 'asdfasdf',
+		// TODO: change role from api
+		role: 'everyone',
+	};
+	const [Layout, setLayout] = useState('LayoutEveryone');
+	useEffect(() => {
+		if (fakeUser.role === 'manager') {
+			setLayout('LayoutManager');
+		}
+	}, []);
 	return (
-		<LayoutManager>
-			<AppRoutes />
-		</LayoutManager>
+		<ErrorBoundary>
+			{Layout === 'LayoutEveryone' ? (
+				<LayoutEveryone>
+					<AppRoutes />
+				</LayoutEveryone>
+			) : (
+				<LayoutManager>
+					<AppRoutes />
+				</LayoutManager>
+			)}
+		</ErrorBoundary>
 	);
 }
 

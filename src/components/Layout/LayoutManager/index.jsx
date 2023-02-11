@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 
-import { Card, Layout, Menu } from 'antd';
+import { Card, Carousel, Layout, Menu } from 'antd';
 import { Content, Header } from 'antd/es/layout/layout';
 import { useNavigate } from 'react-router-dom';
 
-import Logo from '../../assets';
-import { managerItems } from './ManagerItems';
-import { layoutContent, layoutHeader, menuLogo } from './style';
+import Logo from '../../../assets';
+import { managerItems } from '../ManagerItems';
+import { layoutContent, layoutHeader, menuLogo } from '../style';
 
 import Sider from 'antd/es/layout/Sider';
 

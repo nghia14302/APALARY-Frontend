@@ -1,5 +1,9 @@
+import { useEffect, useState } from 'react';
+
 import { Routes, Route, Navigate } from 'react-router-dom';
 
+import LayoutEveryone from '../components/Layout/LayoutEveryone';
+import LayoutManager from '../components/Layout/LayoutManager';
 import { routeKey } from '../components/Layout/ManagerItems';
 import ErrorPage from '../pages/Errors';
 import Home from '../pages/Home';
