@@ -13,11 +13,6 @@ import Sider from 'antd/es/layout/Sider';
 
 const LayoutEveryone = (props) => {
 	const { children } = props;
-	const [link, setLink] = useState('/dashboard');
-	const navigate = useNavigate();
-	useEffect(() => {
-		navigate(link);
-	}, [link]);
 	return (
 		<Layout style={{ minHeight: '100vh' }}>
 			<Layout

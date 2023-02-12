@@ -7,7 +7,7 @@ const PublicRoute = (props) => {
 	const fakeUser = {
 		name: 'fake',
 		token: null,
-		role: role,
+		role: 'everyone',
 	};
 	if (!fakeUser.token || fakeUser.role === 'everyone') {
 		return <Outlet />;
