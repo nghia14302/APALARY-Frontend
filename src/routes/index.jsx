@@ -13,23 +13,24 @@ import PublicRoute from './PublicRoute';
 // public routes here
 const publicRoutes = [
 	{
-		path: routeKey.dashBoard,
+		path: '/',
 		Element: <Home />,
-		role: 'everyone',
 	},
 ];
 
 // private routes here
 const managerRoutes = [
 	{
+		path: routeKey.dashBoard,
+		Element: <Home />,
+	},
+	{
 		path: '/admin',
 		Element: <Home />,
-		role: 'manager',
 	},
 	{
 		path: routeKey.employeesAll,
 		Element: <Home />,
-		role: 'asdafd',
 	},
 ];
 
