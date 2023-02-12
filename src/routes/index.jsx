@@ -12,17 +12,15 @@ const publicRoutes = [
 	{
 		path: routeKey.dashBoard,
 		Element: <Homepage />,
-		role: 'everyone',
+	},
+	{
+		path: routeKey.employeesAll,
+		Element: <Home />,
 	},
 ];
 
 // private routes here
 const managerRoutes = [
-	{
-		path: '/admin',
-		Element: <Home />,
-		role: 'manager',
-	},
 	{
 		path: routeKey.employeesAll,
 		Element: <Home />,
