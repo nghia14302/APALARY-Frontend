@@ -5,6 +5,7 @@ import { Content, Header } from 'antd/es/layout/layout';
 import { useNavigate } from 'react-router-dom';
 
 import Logo from '../../../assets';
+import StyledHeader from '../Header';
 import { managerItems } from '../ManagerItems';
 import { layoutContent, layoutHeader, menuLogo } from '../style';
 
@@ -25,7 +26,7 @@ const LayoutEveryone = (props) => {
 					height: '100vh',
 				}}
 			>
-				<Header style={layoutHeader}></Header>
+				<StyledHeader style={layoutHeader} isDashBoard />
 				<Content style={layoutContent}>
 					<Card bordered>{children}</Card>
 				</Content>
