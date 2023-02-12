@@ -3,17 +3,17 @@ import React from 'react';
 import { Carousel } from 'antd';
 
 import { list } from './data';
+import { carouselStyle, contentStyle, titleStyle } from './styles';
 
 export default function Environment() {
-	const contentStyle = {
-		borderRadius: '10px',
-		padding: '10px 50px',
-	};
 	return (
-		<Carousel style={contentStyle} autoplay>
-			{list.map((todo) => (
-				<img src={todo.img} alt='environment' key={todo.id} />
-			))}
-		</Carousel>
+		<div style={contentStyle}>
+			<h2 style={titleStyle}>Work Environment</h2>
+			<Carousel autoplay style={carouselStyle}>
+				{list.map((todo) => (
+					<img src={todo.img} alt='environment' key={todo.id} />
+				))}
+			</Carousel>
+		</div>
 	);
 }

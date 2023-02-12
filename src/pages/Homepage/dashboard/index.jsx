@@ -1,11 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { Button, Col, Row } from 'antd';
 
 import hero from '../../../assets/homepage/hero.png';
+import themeConfig from '../../../utils/Theme';
 import { buttonStyle, componentStyle, contentStyle, spanTitleStyle, titleStyle } from './styles';
 
-export default function DashboardComponent() {
+export default function Dashboard({ scrollFunc }) {
+	const [onHover, setOnHover] = useState(false);
+
+	const buttonHover = {
+		...buttonStyle,
+		color: themeConfig.token.colorPrimary,
+		background: 'white',
+	};
+	const buttonBlur = {
+		...buttonStyle,
+		background: themeConfig.token.colorPrimary,
+		color: 'white',
+	};
+
 	return (
 		<Row justify='space-between' align='middle' style={componentStyle}>
 			<Col span={10} align='left'>
@@ -16,9 +30,17 @@ export default function DashboardComponent() {
 					You are looking for a job with high salary and stability. A professional and
 					creative working environment.
 				</p>
-				<Button style={buttonStyle}>Let`s go!</Button>
+				{/* {onClick && <Navigate to={<Environment />} />} */}
+				<Button
+					style={onHover ? buttonHover : buttonBlur}
+					onMouseEnter={() => setOnHover(true)}
+					onMouseLeave={() => setOnHover(false)}
+					onClick={scrollFunc}
+				>
+					Let`s go!
+				</Button>
 			</Col>
-			<Col span={12}>
+			<Col span={12} style={{ textAlign: 'end' }}>
 				<img src={hero} alt='decoration' />
 			</Col>
 		</Row>

@@ -3,7 +3,7 @@ import themeConfig from '../../utils/Theme';
 export const layoutContent = {
 	backgroundColor: themeConfig.LayerColor,
 	height: '100%',
-	padding: '20px',
+	padding: '24px',
 };
 export const menuLogo = {
 	height: '64px',

@@ -8,7 +8,6 @@ const PrivateRoute = (props) => {
 	const { role } = props;
 	const fakeUser = (async () => {
 		const user = await randomUserApi.get();
-		console.log(user);
 		return user;
 	})();
 	if (!fakeUser.token || fakeUser.token === '') {
