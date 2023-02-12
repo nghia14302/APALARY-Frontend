@@ -22,7 +22,7 @@ export const routeKey = {
 	applicants: '/applicants',
 };
 
-const getItem = (label, key, icon, children, type) => {
+export const getMenuItem = (label, key, icon, children, type) => {
 	return {
 		label,
 		key,
@@ -32,17 +32,17 @@ const getItem = (label, key, icon, children, type) => {
 	};
 };
 export const managerItems = [
-	getItem('Dashboard', routeKey.dashBoard, <PieChartOutlined />),
-	getItem('Employees', routeKey.employees, <UserOutlined />, [
-		getItem('All', routeKey.employeesAll),
-		getItem('Contracts', routeKey.employeesContracts),
-		getItem('Salaries', routeKey.employeesSalaries),
+	getMenuItem('Dashboard', routeKey.dashBoard, <PieChartOutlined />),
+	getMenuItem('Employees', routeKey.employees, <UserOutlined />, [
+		getMenuItem('All', routeKey.employeesAll),
+		getMenuItem('Contracts', routeKey.employeesContracts),
+		getMenuItem('Salaries', routeKey.employeesSalaries),
 	]),
-	getItem('Applications', routeKey.applications, <MenuFoldOutlined />, [
-		getItem('Salary increasing', routeKey.applicationSalaryIncreasing),
-		getItem('Day leave', routeKey.applicationDayLeave),
-		getItem('Recruitment', routeKey.applicationRecruitment),
+	getMenuItem('Applications', routeKey.applications, <MenuFoldOutlined />, [
+		getMenuItem('Salary increasing', routeKey.applicationSalaryIncreasing),
+		getMenuItem('Day leave', routeKey.applicationDayLeave),
+		getMenuItem('Recruitment', routeKey.applicationRecruitment),
 	]),
-	getItem('Posts', routeKey.posts, <SendOutlined />),
-	getItem('Applicants', routeKey.applicants, <UsergroupAddOutlined />),
+	getMenuItem('Posts', routeKey.posts, <SendOutlined />),
+	getMenuItem('Applicants', routeKey.applicants, <UsergroupAddOutlined />),
 ];

@@ -1,8 +1,9 @@
-import { Avatar, Image, Layout } from 'antd';
+import { Avatar, Button, Dropdown, Image, Layout, Popover } from 'antd';
 import { Content, Header } from 'antd/es/layout/layout';
 
 import Logo from '../../../assets';
 import { menuLogo } from '../style';
+import dropDownItem from './DropdownItem';
 
 const StyledHeader = (props) => {
 	const { style, isDashBoard } = props;
@@ -10,7 +11,9 @@ const StyledHeader = (props) => {
 		<Header style={style}>
 			{isDashBoard ? <Image src={Logo} style={menuLogo} /> : null}
 			<div>
-				<Avatar />
+				<Dropdown menu={{ items: dropDownItem }} placement='bottomLeft'>
+					<Avatar />
+				</Dropdown>
 			</div>
 		</Header>
 	);
