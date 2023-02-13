@@ -1,13 +1,13 @@
 export const postColumns = [
 	{
-		title: 'Name',
+		title: 'Job title',
 		dataIndex: 'name',
 		sorter: true,
 		render: (name) => `${name.first} ${name.last}`,
 		width: '20%',
 	},
 	{
-		title: 'Gender',
+		title: 'Department',
 		dataIndex: 'gender',
 		filters: [
 			{
@@ -22,7 +22,15 @@ export const postColumns = [
 		width: '20%',
 	},
 	{
-		title: 'Email',
+		title: 'Salary',
+		dataIndex: 'email',
+	},
+	{
+		title: 'Max Employee',
+		dataIndex: 'email',
+	},
+	{
+		title: 'status',
 		dataIndex: 'email',
 	},
 ];

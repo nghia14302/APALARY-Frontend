@@ -8,8 +8,6 @@ import CustomTable from '../../components/Table';
 import { postColumns } from './ColumnConfig';
 import { PostSpace } from './style';
 
-const searchRef = createContext();
-
 export const JobOffering = () => {
 	const [data, setData] = useState();
 	const [filteredData, setFilteredData] = useState();
