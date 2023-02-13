@@ -37,7 +37,6 @@ export default function Dashboard({ scrollFunc }) {
 					You are looking for a job with high salary and stability. A professional and
 					creative working environment.
 				</p>
-				{/* {onClick && <Navigate to={<Environment />} />} */}
 				<Button
 					style={onHover ? buttonHover : buttonBlur}
 					onMouseEnter={() => setOnHover(true)}

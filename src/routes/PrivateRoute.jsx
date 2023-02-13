@@ -2,8 +2,6 @@ import React from 'react';
 
 import { Navigate, Outlet } from 'react-router';
 
-import randomUserApi from '../utils/Theme/Apis/randomUserApi';
-
 const PrivateRoute = (props) => {
 	const { role } = props;
 	const fakeUser = {
