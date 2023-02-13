@@ -12,6 +12,7 @@ const searchRef = createContext();
 
 export const JobOffering = () => {
 	const [data, setData] = useState();
+	const [filteredData, setFilteredData] = useState();
 	const searchRef = useRef('');
 	const [searchText, setSearchText] = useState('');
 	const [loading, setLoading] = useState(false);
@@ -27,6 +28,7 @@ export const JobOffering = () => {
 			.then((res) => res.json())
 			.then(({ results }) => {
 				setData(results);
+				setFilteredData(results);
 				setLoading(false);
 				setTableParams({
 					...tableParams,
@@ -51,6 +53,11 @@ export const JobOffering = () => {
 	};
 	const onSearch = (value) => {
 		searchRef.current = value;
+		setFilteredData(
+			data.filter((item) => {
+				return item.name.first.toLowerCase().includes(value.toLowerCase());
+			})
+		);
 		setSearchText(value);
 	};
 	useEffect(() => {
@@ -58,21 +65,15 @@ export const JobOffering = () => {
 	}, []);
 	return (
 		<Box direction='vertical'>
-			<Row justify='end'>
-				<Col>
-					<SearchBar placeholder='Search by name' enterButton onSearch={onSearch} />
-				</Col>
-			</Row>
-			<Box>
-				<CustomTable
-					rowKey={(record) => record.login.uuid}
-					dataSource={data}
-					pagination={tableParams.pagination}
-					loading={loading}
-					onChange={handleTableChange}
-					columns={postColumns}
-				/>
-			</Box>
+			<CustomTable
+				rowKey={(record) => record.login.uuid}
+				dataSource={filteredData}
+				pagination={tableParams.pagination}
+				loading={loading}
+				onSearch={onSearch}
+				onChange={handleTableChange}
+				columns={postColumns}
+			/>
 		</Box>
 	);
 };

@@ -1,7 +1,7 @@
 import { StyledSearch } from './style';
 
-const SearchBar = ({ className, ...rest }) => {
-	return <StyledSearch className={className} {...rest} />;
+const SearchBar = ({ className, onSearch, ...rest }) => {
+	return <StyledSearch className={className} onSearch={onSearch} {...rest} />;
 };
 
 export default SearchBar;
