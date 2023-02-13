@@ -1,9 +1,14 @@
+import { useEffect, useState } from 'react';
+
 import { Routes, Route, Navigate } from 'react-router-dom';
 
+import LayoutEveryone from '../components/Layout/LayoutEveryone';
+import LayoutManager from '../components/Layout/LayoutManager';
 import { routeKey } from '../components/Layout/ManagerItems';
 import ErrorPage from '../pages/Errors';
 import Feedback from '../pages/Feedback/Feedback.jsx';
 import Home from '../pages/Home';
+import Homepage from '../pages/Homepage';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 
@@ -14,19 +19,29 @@ const publicRoutes = [
 		Element: <Feedback />,
 		role: 'everyone',
 	},
+	{
+		path: '/',
+		Element: <Homepage />,
+	},
+	{
+		path: routeKey.employeesAll,
+		Element: <Home />,
+	},
 ];
 
 // private routes here
 const managerRoutes = [
 	{
+		path: routeKey.dashBoard,
+		Element: <Home />,
+	},
+	{
 		path: '/admin',
 		Element: <Home />,
-		role: 'manager',
 	},
 	{
 		path: routeKey.employeesAll,
 		Element: <Home />,
-		role: 'asdafd',
 	},
 ];
 

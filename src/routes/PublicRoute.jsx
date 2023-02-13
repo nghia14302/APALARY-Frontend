@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { Navigate, Outlet } from 'react-router';
 
 const PublicRoute = (props) => {
@@ -7,7 +5,7 @@ const PublicRoute = (props) => {
 	const fakeUser = {
 		name: 'fake',
 		token: null,
-		role: role,
+		role: 'everyone',
 	};
 	if (!fakeUser.token || fakeUser.role === 'everyone') {
 		return <Outlet />;
