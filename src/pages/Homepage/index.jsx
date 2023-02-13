@@ -1,5 +1,6 @@
 import { useRef } from 'react';
 
+import Footer from './Footer';
 import Career from './career/indes';
 import Contact from './contact';
 import Dashboard from './dashboard';
@@ -18,6 +19,7 @@ export default function Homepage() {
 				<Career />
 			</div>
 			<Contact />
+			<Footer />
 		</div>
 	);
 }
