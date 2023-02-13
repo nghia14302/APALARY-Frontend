@@ -7,6 +7,7 @@ import LayoutManager from '../components/Layout/LayoutManager';
 import { routeKey } from '../components/Layout/ManagerItems';
 import ErrorPage from '../pages/Errors';
 import Home from '../pages/Home';
+import JobOffering from '../pages/JobOffering';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 
@@ -31,6 +32,11 @@ const managerRoutes = [
 	{
 		path: routeKey.employeesAll,
 		Element: <Home />,
+	},
+
+	{
+		path: routeKey.posts,
+		Element: <JobOffering />,
 	},
 ];
 

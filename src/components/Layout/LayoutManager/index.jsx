@@ -19,7 +19,7 @@ const LayoutManager = (props) => {
 		navigate(link);
 	}, [link]);
 	return (
-		<Layout style={{ minHeight: '100vh' }}>
+		<Layout>
 			<Sider>
 				<div style={menuLogo}>
 					<img src={Logo} alt='logo' />
@@ -35,7 +35,7 @@ const LayoutManager = (props) => {
 			<Layout
 				className='site-layout'
 				style={{
-					height: '100vh',
+					minHeight: '100vh',
 				}}
 			>
 				<StyledHeader hasLogo={false} style={layoutHeader}></StyledHeader>
