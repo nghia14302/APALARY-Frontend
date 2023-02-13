@@ -13,9 +13,9 @@ export const CustomTable = ({ columns, onSearch, ...rest }) => {
 					)}
 				</Col>
 			</Row>
-			<Box>
-				<Table columns={columns} {...rest} />;
-			</Box>
+			<Row>
+				<Table columns={columns} {...rest} />
+			</Row>
 		</Box>
 	);
 };
