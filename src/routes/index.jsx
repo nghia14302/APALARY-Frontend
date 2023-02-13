@@ -2,6 +2,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 
 import { routeKey } from '../components/Layout/ManagerItems';
 import ErrorPage from '../pages/Errors';
+import Feedback from '../pages/Feedback/Feedback.jsx';
 import Home from '../pages/Home';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
@@ -10,7 +11,7 @@ import PublicRoute from './PublicRoute';
 const publicRoutes = [
 	{
 		path: routeKey.dashBoard,
-		Element: <Home />,
+		Element: <Feedback />,
 		role: 'everyone',
 	},
 ];
