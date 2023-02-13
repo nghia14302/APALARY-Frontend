@@ -22,9 +22,7 @@ const LayoutEveryone = (props) => {
 				}}
 			>
 				<StyledHeader style={layoutHeader} isDashBoard />
-				<Content style={layoutContent}>
-					<Card bordered>{children}</Card>
-				</Content>
+				<Content>{children}</Content>
 			</Layout>
 		</Layout>
 	);

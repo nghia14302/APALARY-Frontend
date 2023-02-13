@@ -7,13 +7,18 @@ import LayoutManager from '../components/Layout/LayoutManager';
 import { routeKey } from '../components/Layout/ManagerItems';
 import ErrorPage from '../pages/Errors';
 import Home from '../pages/Home';
+import Homepage from '../pages/Homepage';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 
 // public routes here
 const publicRoutes = [
 	{
-		path: '/',
+		path: routeKey.dashBoard,
+		Element: <Homepage />,
+	},
+	{
+		path: routeKey.employeesAll,
 		Element: <Home />,
 	},
 ];
