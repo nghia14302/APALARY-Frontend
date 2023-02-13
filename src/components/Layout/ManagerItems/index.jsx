@@ -9,6 +9,7 @@ import {
 } from '@ant-design/icons';
 
 export const routeKey = {
+	homepage: '/homepage',
 	dashBoard: '/dashboard',
 	employees: '/employees',
 	employeesAll: '/employees/all',

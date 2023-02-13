@@ -8,6 +8,7 @@ import { routeKey } from '../components/Layout/ManagerItems';
 import ErrorPage from '../pages/Errors';
 import Home from '../pages/Home';
 import JobOffering from '../pages/JobOffering';
+import Homepage from '../pages/Homepage';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 
@@ -15,6 +16,10 @@ import PublicRoute from './PublicRoute';
 const publicRoutes = [
 	{
 		path: '/',
+		Element: <Homepage />,
+	},
+	{
+		path: routeKey.employeesAll,
 		Element: <Home />,
 	},
 ];
