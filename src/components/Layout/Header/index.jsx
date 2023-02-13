@@ -9,7 +9,7 @@ const StyledHeader = (props) => {
 	const { style, isDashBoard } = props;
 	return (
 		<Header style={style}>
-			{isDashBoard ? <Image src={Logo} style={menuLogo} /> : <div></div>}
+			<div>{isDashBoard ? <img src={Logo} style={menuLogo} /> : null}</div>
 			<div>
 				<Dropdown menu={{ items: dropDownItem }} placement='bottomLeft'>
 					<Avatar />

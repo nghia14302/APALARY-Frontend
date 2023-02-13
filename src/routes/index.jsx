@@ -14,7 +14,7 @@ import PublicRoute from './PublicRoute';
 // public routes here
 const publicRoutes = [
 	{
-		path: routeKey.dashBoard,
+		path: '/',
 		Element: <Homepage />,
 	},
 	{
