@@ -21,7 +21,7 @@ const LayoutEveryone = (props) => {
 					height: '100vh',
 				}}
 			>
-				<Header style={layoutHeader}></Header>
+				<StyledHeader style={layoutHeader} isDashBoard />
 				<Content>{children}</Content>
 			</Layout>
 		</Layout>
