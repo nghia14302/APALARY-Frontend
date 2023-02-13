@@ -1,10 +1,17 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import { Button, Col, Row } from 'antd';
 
 import hero from '../../../assets/homepage/hero.png';
 import themeConfig from '../../../utils/Theme';
-import { buttonStyle, componentStyle, contentStyle, spanTitleStyle, titleStyle } from './styles';
+import {
+	buttonStyle,
+	componentStyle,
+	contentStyle,
+	Image,
+	spanTitleStyle,
+	titleStyle,
+} from './styles';
 
 export default function Dashboard({ scrollFunc }) {
 	const [onHover, setOnHover] = useState(false);
@@ -41,7 +48,7 @@ export default function Dashboard({ scrollFunc }) {
 				</Button>
 			</Col>
 			<Col span={12} style={{ textAlign: 'end' }}>
-				<img src={hero} alt='decoration' />
+				<Image src={hero} alt='decoration' />
 			</Col>
 		</Row>
 	);

@@ -26,9 +26,16 @@ const publicRoutes = [
 // private routes here
 const managerRoutes = [
 	{
+		path: routeKey.dashBoard,
+		Element: <Home />,
+	},
+	{
+		path: '/admin',
+		Element: <Home />,
+	},
+	{
 		path: routeKey.employeesAll,
 		Element: <Home />,
-		role: 'asdafd',
 	},
 ];
 

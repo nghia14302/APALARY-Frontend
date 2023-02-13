@@ -12,13 +12,26 @@ export default function Homepage() {
 	const executeScroll = () => careerRef.current.scrollIntoView({ behavior: 'smooth' });
 
 	return (
-		<div>
-			<Dashboard scrollFunc={executeScroll} />
-			<Environment />
-			<div ref={careerRef}>
+		<div style={{ overflow: 'hidden' }}>
+			<div data-aos='fade-up' data-aos-duration='1000'>
+				<Dashboard scrollFunc={executeScroll} />
+			</div>
+
+			<div data-aos='fade-left' data-aos-duration='1000' data-aos-delay='100'>
+				<Environment />
+			</div>
+			<div
+				ref={careerRef}
+				data-aos='zoom-in-left'
+				data-aos-duration='1000'
+				data-aos-delay='100'
+			>
 				<Career />
 			</div>
-			<Contact />
+			<div data-aos='fade-right' data-aos-duration='1000' data-aos-delay='100'>
+				<Contact />
+			</div>
+
 			<Footer />
 		</div>
 	);

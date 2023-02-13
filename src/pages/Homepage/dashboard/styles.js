@@ -1,6 +1,22 @@
+import styled, { keyframes } from 'styled-components';
+
 import bgDashboard from '../../../assets/homepage/bg-homepage.jpg';
 import themeConfig from '../../../utils/Theme';
 
+const dance = keyframes`
+	0% {
+		transform: translateY(0px);
+	}
+	50% {
+		transform: translateY(-15px);
+	}
+	100% {
+		transform: translateY(0px);
+	}
+`;
+export const Image = styled.img`
+	animation: ${dance} 2.5s infinite;
+`;
 export const componentStyle = {
 	backgroundImage: `url(${bgDashboard})`,
 	height: `calc(100vh - 64px)`,

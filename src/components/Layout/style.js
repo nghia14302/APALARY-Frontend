@@ -14,4 +14,7 @@ export const menuLogo = {
 };
 export const layoutHeader = {
 	backgroundColor: '#fff',
+	display: 'flex',
+	justifyContent: 'space-between',
+	alignItems: 'center',
 };

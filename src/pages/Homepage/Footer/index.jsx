@@ -5,10 +5,10 @@ import { componentStyle } from './styles';
 export default function Footer() {
 	return (
 		<div style={componentStyle}>
-			<p style={{ margin: '5px' }}>
+			<p style={{ margin: '5px 0' }}>
 				Made by <b>BBNT</b>
 			</p>
-			<p style={{ margin: '5px' }}>
+			<p style={{ margin: '0 0 5px' }}>
 				© 2023
 				<b> SWP</b>. All rights reserved
 			</p>

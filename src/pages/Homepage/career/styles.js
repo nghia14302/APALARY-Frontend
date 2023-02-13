@@ -1,7 +1,7 @@
 import themeConfig from '../../../utils/Theme';
 
 export const componentStyle = {
-	padding: '50px 100px',
+	padding: '100px',
 };
 export const titleStyle = {
 	fontSize: '30px',
