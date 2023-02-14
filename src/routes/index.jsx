@@ -37,6 +37,10 @@ const managerRoutes = [
 		Element: <Home />,
 	},
 	{
+		path: routeKey.postsSpecific,
+		Element: <Feedback />,
+	},
+	{
 		path: '/admin',
 		Element: <Home />,
 	},

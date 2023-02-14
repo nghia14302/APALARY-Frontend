@@ -1,12 +1,13 @@
-import { Typography } from 'antd';
+import { Link } from 'react-router-dom';
 
-const { Text } = Typography;
+import { routeKey } from '../../../components/Layout/ManagerItems';
 
 export const postColumns = [
 	{
 		title: 'Job title',
 		dataIndex: 'title',
 		sorter: true,
+		render: (value, record) => <Link to={`${routeKey.posts}/${record.id}`}>{value}</Link>,
 		width: '20%',
 	},
 	{
