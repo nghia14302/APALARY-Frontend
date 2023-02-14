@@ -1,36 +1,33 @@
+import { Typography } from 'antd';
+
+const { Text } = Typography;
+
 export const postColumns = [
 	{
 		title: 'Job title',
-		dataIndex: 'name',
+		dataIndex: 'title',
 		sorter: true,
-		render: (name) => `${name.first} ${name.last}`,
 		width: '20%',
 	},
 	{
-		title: 'Department',
-		dataIndex: 'gender',
-		filters: [
-			{
-				text: 'Male',
-				value: 'male',
-			},
-			{
-				text: 'Female',
-				value: 'female',
-			},
-		],
-		width: '20%',
+		title: 'Description',
+		dataIndex: 'description',
+		ellipsis: true,
 	},
 	{
 		title: 'Salary',
-		dataIndex: 'email',
+		dataIndex: 'baseSalary',
 	},
 	{
 		title: 'Max Employee',
-		dataIndex: 'email',
+		dataIndex: 'maxEmployee',
 	},
 	{
-		title: 'status',
-		dataIndex: 'email',
+		title: 'Status',
+		dataIndex: 'status',
 	},
 ];
+export const paginationConfig = {
+	showSizeChanger: true,
+	showQuickJump: true,
+};

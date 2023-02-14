@@ -5,8 +5,10 @@ import { Col, Input, Row, Space, Table } from 'antd';
 import Box from '../../components/Box';
 import SearchBar from '../../components/SearchBar';
 import CustomTable from '../../components/Table';
-import { postColumns } from './ColumnConfig';
+import jobOfferingApi from '../../utils/Apis/jobOffering';
+import { paginationConfig, postColumns } from './ColumnConfig';
 import { PostSpace } from './style';
+import { useFetch } from './useFetch';
 
 export const JobOffering = () => {
 	const [data, setData] = useState();
@@ -20,23 +22,6 @@ export const JobOffering = () => {
 			pageSize: 10,
 		},
 	});
-	const fetchData = () => {
-		setLoading(true);
-		fetch(`https://randomuser.me/api?results=20&seed=abc`)
-			.then((res) => res.json())
-			.then(({ results }) => {
-				setData(results);
-				setFilteredData(results);
-				setLoading(false);
-				setTableParams({
-					...tableParams,
-					pagination: {
-						...tableParams.pagination,
-						// 200 is mock data, you should read it from server
-					},
-				});
-			});
-	};
 	const handleTableChange = (pagination, filters, sorter) => {
 		setTableParams({
 			pagination,
@@ -53,20 +38,38 @@ export const JobOffering = () => {
 		searchRef.current = value;
 		setFilteredData(
 			data.filter((item) => {
-				return item.name.first.toLowerCase().includes(value.toLowerCase());
+				return item.title.toLowerCase().includes(value.toLowerCase());
 			})
 		);
 		setSearchText(value);
 	};
+
+	// Fetching data from jobOfferingApi
 	useEffect(() => {
-		fetchData();
+		const fetch = async () => {
+			setLoading(true);
+			await jobOfferingApi
+				.getJobOffering()
+				.then((res) => {
+					if (res.data.status === 403) {
+						setData([]);
+						return;
+					}
+					setData(res.data);
+					setFilteredData(res.data);
+					console.log(res.data);
+				})
+				.finally(() => {
+					setLoading(false);
+				});
+		};
+		fetch();
 	}, []);
 	return (
 		<Box direction='vertical'>
 			<CustomTable
-				rowKey={(record) => record.login.uuid}
+				rowKey={(record) => record.id + 'job-offering'}
 				dataSource={filteredData}
-				pagination={tableParams.pagination}
 				loading={loading}
 				onSearch={onSearch}
 				onChange={handleTableChange}
