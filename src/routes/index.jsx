@@ -9,6 +9,7 @@ import ErrorPage from '../pages/Errors';
 import Feedback from '../pages/Feedback/Feedback.jsx';
 import Home from '../pages/Home';
 import Homepage from '../pages/Homepage';
+import FormDisabledDemo from '../pages/Profile/Profile';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 
@@ -16,7 +17,7 @@ import PublicRoute from './PublicRoute';
 const publicRoutes = [
 	{
 		path: routeKey.dashBoard,
-		Element: <Feedback />,
+		Element: <Homepage />,
 		role: 'everyone',
 	},
 	{
@@ -26,6 +27,14 @@ const publicRoutes = [
 	{
 		path: routeKey.employeesAll,
 		Element: <Home />,
+	},
+	{
+		path: '/feedback',
+		Element: <Feedback />,
+	},
+	{
+		path: '/profile',
+		Element: <FormDisabledDemo />,
 	},
 ];
 

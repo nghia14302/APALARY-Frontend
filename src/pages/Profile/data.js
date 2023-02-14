@@ -2,7 +2,7 @@ const Profile = [
 	{
 		id: 1,
 		name: 'thanh dep trai',
-		date: '27/08/2002',
+		date: '2002-01-2',
 		gender: 'Female',
 		phone: '123455689',
 		number: 'AB1243',
