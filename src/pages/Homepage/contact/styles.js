@@ -41,3 +41,9 @@ export const mediaStyle = {
 	margin: '1rem 0',
 	color: 'black',
 };
+export const tagStyle = {
+	fontSize: '15px',
+	padding: '5px',
+	width: '65px',
+	textAlign: 'center',
+};
