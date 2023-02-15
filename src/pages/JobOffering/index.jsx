@@ -8,8 +8,6 @@ import SearchBar from '../../components/SearchBar';
 import CustomTable from '../../components/Table';
 import jobOfferingApi from '../../utils/Apis/jobOffering';
 import { paginationConfig, postColumns } from './ColumnConfig';
-import { PostSpace } from './style';
-import { useFetch } from './useFetch';
 
 export const JobOffering = () => {
 	const [data, setData] = useState();
@@ -58,7 +56,6 @@ export const JobOffering = () => {
 					}
 					setData(res.data);
 					setFilteredData(res.data);
-					console.log(res.data);
 				})
 				.finally(() => {
 					setLoading(false);
@@ -76,6 +73,7 @@ export const JobOffering = () => {
 					pagination={{
 						...paginationConfig,
 					}}
+					addNewButton={true}
 					onSearch={onSearch}
 					onChange={handleTableChange}
 					columns={postColumns}

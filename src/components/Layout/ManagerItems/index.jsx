@@ -20,8 +20,8 @@ export const routeKey = {
 	applicationDayLeave: '/application/day-leave',
 	applicationRecruitment: '/application/recruitment',
 	posts: '/posts',
+	postsCreate: '/posts/create',
 	postsSpecific: '/posts/:id',
-
 	applicants: '/applicants',
 };
 
