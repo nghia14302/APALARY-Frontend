@@ -10,6 +10,7 @@ import Feedback from '../pages/Feedback/Feedback.jsx';
 import Home from '../pages/Home';
 import Homepage from '../pages/Homepage';
 import JobOffering from '../pages/JobOffering';
+import PostDetail from '../pages/JobOffering/Detail';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 
@@ -38,7 +39,7 @@ const managerRoutes = [
 	},
 	{
 		path: routeKey.postsSpecific,
-		Element: <Feedback />,
+		Element: <PostDetail />,
 	},
 	{
 		path: '/admin',

@@ -39,9 +39,7 @@ const LayoutManager = (props) => {
 				}}
 			>
 				<StyledHeader hasLogo={false} style={layoutHeader}></StyledHeader>
-				<Content style={layoutContent}>
-					<Card bordered>{children}</Card>
-				</Content>
+				<Content style={layoutContent}>{children}</Content>
 			</Layout>
 		</Layout>
 	);
