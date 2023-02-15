@@ -7,12 +7,13 @@ import SearchBar from '../../components/SearchBar';
 import CustomTable from '../../components/Table';
 import jobOfferingApi from '../../utils/Apis/jobOffering';
 import { paginationConfig, postColumns } from './ColumnConfig';
+import { initPosts } from './init.data';
 import { PostSpace } from './style';
 import { useFetch } from './useFetch';
 
 export const JobOffering = () => {
-	const [data, setData] = useState();
-	const [filteredData, setFilteredData] = useState();
+	const [data, setData] = useState(initPosts);
+	const [filteredData, setFilteredData] = useState(initPosts);
 	const searchRef = useRef('');
 	const [searchText, setSearchText] = useState('');
 	const [loading, setLoading] = useState(false);
@@ -63,7 +64,7 @@ export const JobOffering = () => {
 					setLoading(false);
 				});
 		};
-		fetch();
+		// fetch();
 	}, []);
 	return (
 		<Box direction='vertical'>
@@ -71,6 +72,9 @@ export const JobOffering = () => {
 				rowKey={(record) => record.id + 'job-offering'}
 				dataSource={filteredData}
 				loading={loading}
+				pagination={{
+					...paginationConfig,
+				}}
 				onSearch={onSearch}
 				onChange={handleTableChange}
 				columns={postColumns}

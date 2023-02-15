@@ -30,5 +30,5 @@ export const postColumns = [
 ];
 export const paginationConfig = {
 	showSizeChanger: true,
-	showQuickJump: true,
+	showQuickJumper: true,
 };
