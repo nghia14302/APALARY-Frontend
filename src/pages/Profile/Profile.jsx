@@ -1,6 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { Button, DatePicker, Form, Input, Radio, Card } from 'antd';
+import dayjs from 'dayjs';
+import 'dayjs/locale/zh-cn';
 
 import Profile from './data';
 
@@ -9,11 +11,16 @@ const { TextArea } = Input;
 
 const FormDisabledDemo = () => {
 	const [componentDisabled, setComponentDisabled] = useState(true);
+	const [phoneText, setPhoneText] = useState('');
 	const onFormLayoutChange = ({ disabled }) => {
 		setComponentDisabled(disabled);
 	};
 
 	const { name, phone, number, username, password, gender, date } = Profile[0];
+
+	useEffect(() => {
+		setPhoneText(phone);
+	}, []);
 	return (
 		<Card
 			title='Personal Information'
@@ -39,28 +46,28 @@ const FormDisabledDemo = () => {
 				}}
 			>
 				<Form.Item label='Full Name' style={{ marginTop: 10 }}>
-					<Input placeholder={name}></Input>
+					<Input value={name}></Input>
 				</Form.Item>
 				<Form.Item label='Gender'>
-					<Radio.Group>
+					<Radio.Group value={gender}>
 						<Radio value='Female'> Female </Radio>
 						<Radio value='Male'> Male </Radio>
 					</Radio.Group>
 				</Form.Item>
 				<Form.Item label='Date'>
-					<DatePicker />
+					<DatePicker defaultValue={dayjs(date, 'YYYY-MM-DD')} />
 				</Form.Item>
 				<Form.Item label='Phone' style={{ marginTop: 10 }}>
-					<Input placeholder={phone}></Input>
+					<Input value={phoneText} onChange={(e) => setPhoneText(e.target.value)} />
 				</Form.Item>
 				<Form.Item label='ID' style={{ marginTop: 10 }}>
-					<Input placeholder={number}></Input>
+					<Input value={number}></Input>
 				</Form.Item>
 				<Form.Item label='UserName' style={{ marginTop: 10 }}>
-					<Input placeholder={username}></Input>
+					<Input value={username}></Input>
 				</Form.Item>
 				<Form.Item label='Password' style={{ marginTop: 10 }}>
-					<Input placeholder={password}></Input>
+					<Input value={password}></Input>
 				</Form.Item>
 
 				<Button
