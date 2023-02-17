@@ -2,7 +2,6 @@ import axios from 'axios';
 
 import { API_URL } from '../../config';
 
-console.log(API_URL);
 const apiCaller = async (method, endpoint, body, headers, params) => {
 	return await axios({
 		method,
