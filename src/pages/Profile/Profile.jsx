@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { Button, DatePicker, Form, Input, Radio, Card } from 'antd';
 import dayjs from 'dayjs';
@@ -11,11 +11,16 @@ const { TextArea } = Input;
 
 const FormDisabledDemo = () => {
 	const [componentDisabled, setComponentDisabled] = useState(true);
+	const [phoneText, setPhoneText] = useState('');
 	const onFormLayoutChange = ({ disabled }) => {
 		setComponentDisabled(disabled);
 	};
 
 	const { name, phone, number, username, password, gender, date } = Profile[0];
+
+	useEffect(() => {
+		setPhoneText(phone);
+	}, []);
 	return (
 		<Card
 			title='Personal Information'
@@ -53,7 +58,7 @@ const FormDisabledDemo = () => {
 					<DatePicker defaultValue={dayjs(date, 'YYYY-MM-DD')} />
 				</Form.Item>
 				<Form.Item label='Phone' style={{ marginTop: 10 }}>
-					<Input value={phone}></Input>
+					<Input value={phoneText} onChange={(e) => setPhoneText(e.target.value)} />
 				</Form.Item>
 				<Form.Item label='ID' style={{ marginTop: 10 }}>
 					<Input value={number}></Input>
