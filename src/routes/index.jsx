@@ -5,10 +5,13 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import LayoutEveryone from '../components/Layout/LayoutEveryone';
 import LayoutManager from '../components/Layout/LayoutManager';
 import { routeKey } from '../components/Layout/ManagerItems';
+import Contract from '../pages/Contract/Contract';
+import EmDashboard from '../pages/EmDashboard';
 import ErrorPage from '../pages/Errors';
 import Feedback from '../pages/Feedback/Feedback.jsx';
 import Home from '../pages/Home';
 import Homepage from '../pages/Homepage';
+import Salary from '../pages/eSalary/Salary';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 
@@ -16,7 +19,7 @@ import PublicRoute from './PublicRoute';
 const publicRoutes = [
 	{
 		path: routeKey.dashBoard,
-		Element: <Feedback />,
+		Element: <EmDashboard />,
 		role: 'everyone',
 	},
 	{
@@ -28,7 +31,7 @@ const publicRoutes = [
 		Element: <Home />,
 	},
 ];
-
+//sdff
 // private routes here
 const managerRoutes = [
 	{
