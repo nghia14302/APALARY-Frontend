@@ -12,7 +12,7 @@ function App() {
 		name: 'asv',
 		token: 'asdfasdf',
 		// TODO: change role from api
-		role: 'manager',
+		role: 'employee',
 	};
 	const [Layout, setLayout] = useState('LayoutEveryone');
 	useEffect(() => {
