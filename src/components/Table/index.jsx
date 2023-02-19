@@ -1,24 +1,45 @@
-import { Table, Row, Col, Button } from 'antd';
+import { Table, Row, Col, Button, Tabs } from 'antd';
 import { Link } from 'react-router-dom';
 
+import { tabStatusConfig } from '../../config/TabsConfig';
 import Box from '../Box';
 import { routeKey } from '../Layout/ManagerItems';
 import SearchBar from '../SearchBar';
 
 import { PlusOutlined } from '@ant-design/icons';
 
-export const CustomTable = ({ addNewButton, columns, onSearch, ...rest }) => {
+export const CustomTable = ({
+	addNewButton,
+	columns,
+	onSearch,
+	activeKey,
+	onTabChange,
+	...rest
+}) => {
 	return (
-		<Box direction='vertical'>
-			<Row justify={'space-between'}>
+		<Box direction='vertical' width='100%'>
+			<Row justify={'space-between'} gutter={20}>
 				<Col>
-					{addNewButton && (
-						<Link to={routeKey.postsCreate}>
-							<Button icon={<PlusOutlined />} type='primary'>
-								Add new
-							</Button>
-						</Link>
-					)}
+					<Row justify={'center'} align='middle'>
+						<Col>
+							{onTabChange && (
+								<Tabs
+									activeKey={activeKey}
+									onChange={onTabChange}
+									items={tabStatusConfig.map((item) => item)}
+								/>
+							)}
+						</Col>
+						<Col>
+							{addNewButton && (
+								<Link to={routeKey.postsCreate}>
+									<Button icon={<PlusOutlined />} type='primary'>
+										Add new
+									</Button>
+								</Link>
+							)}
+						</Col>
+					</Row>
 				</Col>
 				<Col>
 					{onSearch && (

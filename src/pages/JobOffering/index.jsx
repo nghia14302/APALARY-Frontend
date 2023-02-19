@@ -47,11 +47,10 @@ export const JobOffering = () => {
 					}
 					setData(res.data);
 					setFilteredData(res.data);
-					toast('success', 'Successfully fetched data');
 				})
 				.catch((err) => {
 					console.log(err);
-					toast('error', 'Failed to fetch data');
+					toast('Failed to fetch data', 'error');
 				})
 				.finally(() => {
 					setLoading(false);

@@ -5,7 +5,8 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import LayoutEveryone from '../components/Layout/LayoutEveryone';
 import LayoutManager from '../components/Layout/LayoutManager';
 import { routeKey } from '../components/Layout/ManagerItems';
-import Applicants from '../pages/Applicant/indes';
+import Applicants from '../pages/Applicant';
+import ApplicantDetails from '../pages/Applicant/Detail';
 import ErrorPage from '../pages/Errors';
 import Feedback from '../pages/Feedback/Feedback.jsx';
 import Home from '../pages/Home';
@@ -47,6 +48,10 @@ const managerRoutes = [
 	{
 		path: routeKey.applicants,
 		Element: <Applicants />,
+	},
+	{
+		path: routeKey.applicantsSpecific,
+		Element: <ApplicantDetails />,
 	},
 	{
 		path: routeKey.dashBoard,

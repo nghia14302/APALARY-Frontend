@@ -21,23 +21,20 @@ export const applicantColumns = [
 		sorter: true,
 	},
 	{
-		title: 'status',
-		dataIndex: 'status',
-		sorter: true,
-	},
-	{
 		title: 'Department',
 		dataIndex: 'department',
 		sorter: true,
 	},
 	{
 		title: 'Action',
-		render: (_, record) => (
-			<Space size='middle'>
-				<Link to={`${routeKey.applicants}/${record.id}`}>Approve</Link>
-				<Link to={`${routeKey.applicants}/${record.id}/edit`}>Delete</Link>
-			</Space>
-		),
+		showStatus: 'waiting',
+		render: (_, record) =>
+			record.status === 'waiting' && (
+				<Space size='middle'>
+					<Link to={`${routeKey.applicants}/${record.id}`}>Approve</Link>
+					<Link to={`${routeKey.applicants}/${record.id}/edit`}>Delete</Link>
+				</Space>
+			),
 	},
 ];
 

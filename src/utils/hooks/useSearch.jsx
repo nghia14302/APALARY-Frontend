@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 
 const useSearch = () => {
 	const [search, setSearch] = useState('');
-	const searchRef = useRef();
+	const searchRef = useRef('');
 	useEffect(() => {
 		setSearch(searchRef.current);
 	}, [searchRef]);
