@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 import { Col, Row, Space, Table } from 'antd';
 
-import careerImg from '../../../assets/homepage/career-bg.jpg';
+import careerImg from '../../../assets/homepage/hiring.png';
 import jobOfferingApi from '../../../utils/Apis/jobOffering';
 import { buttonStyle, componentStyle, imgStyle, titleStyle } from './styles';
 
