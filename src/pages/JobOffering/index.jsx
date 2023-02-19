@@ -1,19 +1,20 @@
 import { createContext, useContext, useEffect, useRef, useState } from 'react';
 
-import { Col, Input, Row, Space, Table } from 'antd';
-
 import Box from '../../components/Box';
 import CustomCard from '../../components/Card';
 import SearchBar from '../../components/SearchBar';
 import CustomTable from '../../components/Table';
+import toast from '../../components/Toast';
+import { paginationConfig, postColumns } from '../../config/ColumnConfig';
 import jobOfferingApi from '../../utils/Apis/jobOffering';
-import { paginationConfig, postColumns } from './ColumnConfig';
+import useSearch from '../../utils/hooks/useSearch';
 
 export const JobOffering = () => {
 	const [data, setData] = useState();
 	const [filteredData, setFilteredData] = useState();
-	const searchRef = useRef('');
-	const [searchText, setSearchText] = useState('');
+	// const searchRef = useRef('');
+	// const [searchText, setSearchText] = useState('');
+	const [searchText, searchRef, onSearchChange] = useSearch();
 	const [loading, setLoading] = useState(false);
 	const [tableParams, setTableParams] = useState({
 		pagination: {
@@ -33,16 +34,6 @@ export const JobOffering = () => {
 			setData([]);
 		}
 	};
-	const onSearch = (value) => {
-		searchRef.current = value;
-		setFilteredData(
-			data.filter((item) => {
-				return item.title.toLowerCase().includes(value.toLowerCase());
-			})
-		);
-		setSearchText(value);
-	};
-
 	// Fetching data from jobOfferingApi
 	useEffect(() => {
 		const fetch = async () => {
@@ -56,6 +47,11 @@ export const JobOffering = () => {
 					}
 					setData(res.data);
 					setFilteredData(res.data);
+					toast('success', 'Successfully fetched data');
+				})
+				.catch((err) => {
+					console.log(err);
+					toast('error', 'Failed to fetch data');
 				})
 				.finally(() => {
 					setLoading(false);
@@ -74,7 +70,7 @@ export const JobOffering = () => {
 						...paginationConfig,
 					}}
 					addNewButton={true}
-					onSearch={onSearch}
+					onSearch={onSearchChange}
 					onChange={handleTableChange}
 					columns={postColumns}
 				/>

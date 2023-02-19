@@ -5,6 +5,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import LayoutEveryone from '../components/Layout/LayoutEveryone';
 import LayoutManager from '../components/Layout/LayoutManager';
 import { routeKey } from '../components/Layout/ManagerItems';
+import Applicants from '../pages/Applicant/indes';
 import ErrorPage from '../pages/Errors';
 import Feedback from '../pages/Feedback/Feedback.jsx';
 import Home from '../pages/Home';
@@ -43,6 +44,10 @@ const publicRoutes = [
 
 // private routes here
 const managerRoutes = [
+	{
+		path: routeKey.applicants,
+		Element: <Applicants />,
+	},
 	{
 		path: routeKey.dashBoard,
 		Element: <Home />,
