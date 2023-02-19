@@ -9,6 +9,7 @@ import {
 } from '@ant-design/icons';
 
 export const routeKey = {
+	homepage: '/homepage',
 	dashBoard: '/dashboard',
 	employees: '/employees',
 	employeesAll: '/employees/all',
@@ -19,6 +20,8 @@ export const routeKey = {
 	applicationDayLeave: '/application/day-leave',
 	applicationRecruitment: '/application/recruitment',
 	posts: '/posts',
+	postsCreate: '/posts/create',
+	postsSpecific: '/posts/:id',
 	applicants: '/applicants',
 };
 

@@ -4,10 +4,18 @@ import { Button, Col, Form, Input, Row, Tag } from 'antd';
 
 import FacebookIcon from '../../../assets/homepage/facebook-logo.png';
 import GmailIcon from '../../../assets/homepage/gmail-logo.png';
-import InstagramIcon from '../../../assets/homepage/instagram-logo.png';
-import TwitterIcon from '../../../assets/homepage/twitter-logo.png';
 import themeConfig from '../../../utils/Theme';
-import { buttonStyle, componentStyle, formStyle, imgStyle, mediaStyle, titleStyle } from './styles';
+import InstagramIcon from './../../../assets/homepage/instagram-logo.png';
+import TwitterIcon from './../../../assets/homepage/twitter-logo.png';
+import {
+	buttonStyle,
+	componentStyle,
+	formStyle,
+	imgStyle,
+	mediaStyle,
+	tagStyle,
+	titleStyle,
+} from './styles';
 
 const { TextArea } = Input;
 
@@ -33,15 +41,15 @@ export default function Contact() {
 				</h3>
 				<Row>
 					<Col span={12}>
-						<a style={mediaStyle} href='https://www.facebook.com'>
+						<a style={mediaStyle} href='https://fb.com/profile'>
 							<img src={FacebookIcon} alt='facebook icon' style={imgStyle} />
-							<span style={{ marginLeft: '10px' }}>www.facebook.com</span>
+							<span style={{ marginLeft: '10px' }}>fb.com</span>
 						</a>
 					</Col>
 					<Col span={12}>
 						<a style={mediaStyle} href='https://www.gmail.com'>
 							<img src={GmailIcon} alt='facebook icon' style={imgStyle} />
-							<span style={{ marginLeft: '10px' }}>www.gmail.com</span>
+							<span style={{ marginLeft: '10px' }}>apalary@gmail.com</span>
 						</a>
 					</Col>
 					<Col span={12}>
@@ -71,10 +79,7 @@ export default function Contact() {
 					<Form.Item>
 						<Input
 							prefix={
-								<Tag
-									color={themeConfig.token.colorPrimary}
-									style={{ fontSize: '15px', padding: '5px' }}
-								>
+								<Tag color={themeConfig.token.colorPrimary} style={tagStyle}>
 									Name
 								</Tag>
 							}
@@ -84,10 +89,7 @@ export default function Contact() {
 					<Form.Item>
 						<Input
 							prefix={
-								<Tag
-									color={themeConfig.token.colorPrimary}
-									style={{ fontSize: '15px', padding: '5px' }}
-								>
+								<Tag color={themeConfig.token.colorPrimary} style={tagStyle}>
 									Email
 								</Tag>
 							}
@@ -98,10 +100,7 @@ export default function Contact() {
 					<Form.Item>
 						<Input
 							prefix={
-								<Tag
-									color={themeConfig.token.colorPrimary}
-									style={{ fontSize: '15px', padding: '5px' }}
-								>
+								<Tag color={themeConfig.token.colorPrimary} style={tagStyle}>
 									Subject
 								</Tag>
 							}
@@ -110,10 +109,7 @@ export default function Contact() {
 					</Form.Item>
 					<Form.Item
 						label={
-							<p
-								color={themeConfig.token.colorPrimary}
-								style={{ fontSize: '15px', padding: '5px' }}
-							>
+							<p color={themeConfig.token.colorPrimary} style={tagStyle}>
 								Message
 							</p>
 						}

@@ -6,8 +6,14 @@ import LayoutEveryone from '../components/Layout/LayoutEveryone';
 import LayoutManager from '../components/Layout/LayoutManager';
 import { routeKey } from '../components/Layout/ManagerItems';
 import ErrorPage from '../pages/Errors';
+import Feedback from '../pages/Feedback/Feedback.jsx';
 import Home from '../pages/Home';
 import Homepage from '../pages/Homepage';
+import JobOffering from '../pages/JobOffering';
+import PostCreation from '../pages/JobOffering/CreatePages';
+import PostDetail from '../pages/JobOffering/Detail';
+import FormDisabledDemo from '../pages/Profile/Profile';
+import Login from '../pages/login';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 
@@ -16,10 +22,27 @@ const publicRoutes = [
 	{
 		path: routeKey.dashBoard,
 		Element: <Homepage />,
+		role: 'everyone',
+	},
+	{
+		path: '/',
+		Element: <Homepage />,
 	},
 	{
 		path: routeKey.employeesAll,
 		Element: <Home />,
+	},
+	{
+		path: '/feedback',
+		Element: <Feedback />,
+	},
+	{
+		path: '/profile',
+		Element: <FormDisabledDemo />,
+	},
+	{
+		path: '/login',
+		Element: <Login />,
 	},
 ];
 
@@ -30,12 +53,25 @@ const managerRoutes = [
 		Element: <Home />,
 	},
 	{
+		path: routeKey.postsCreate,
+		Element: <PostCreation />,
+	},
+	{
+		path: routeKey.postsSpecific,
+		Element: <PostDetail />,
+	},
+	{
 		path: '/admin',
 		Element: <Home />,
 	},
 	{
 		path: routeKey.employeesAll,
 		Element: <Home />,
+	},
+
+	{
+		path: routeKey.posts,
+		Element: <JobOffering />,
 	},
 ];
 

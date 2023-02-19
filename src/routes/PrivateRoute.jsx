@@ -1,12 +1,10 @@
-import React from 'react';
-
 import { Navigate, Outlet } from 'react-router';
 
 const PrivateRoute = (props) => {
 	const { role } = props;
 	const fakeUser = {
 		token: 'adfasf',
-		role: 'everyone',
+		role: 'manager',
 	};
 	if (!fakeUser.token || fakeUser.token === '') {
 		return <Navigate to='/error/401' />;
