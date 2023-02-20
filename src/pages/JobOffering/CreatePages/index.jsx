@@ -7,6 +7,8 @@ import { Editor } from 'react-draft-wysiwyg';
 import Box from '../../../components/Box';
 import CustomCard from '../../../components/Card';
 import CustomEditor from '../../../components/Editor';
+import { apiHandler } from '../../../utils/Apis/handler';
+import jobOfferingApi from '../../../utils/Apis/jobOffering';
 import themeConfig from '../../../utils/Theme';
 import { initData } from '../Detail/initData';
 import { formConfig } from './formConfig';
@@ -17,12 +19,28 @@ import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 const { Title, Text } = Typography;
 const PostCreation = () => {
 	const [data, setData] = useState(initData);
+	const [loading, setLoading] = useState(false);
 	const [form] = Form.useForm();
 	const [editorState, setEditorState] = useState(EditorState.createEmpty());
 	const [status, setStatus] = useState('error');
-	const onSubmit = () => {
+	const onSubmit = async () => {
 		console.log(form.getFieldsValue());
-		console.log(editorState);
+		const formData = form.getFieldsValue();
+		const raw = convertToRaw(editorState.getCurrentContent());
+		const completedForm = {
+			...formData,
+			description: JSON.stringify(raw),
+			// TODO: change to user id when login is done
+			employeeId: 1,
+		};
+		const handleApi = await apiHandler(
+			jobOfferingApi,
+			'post',
+			'success',
+			setLoading,
+			completedForm
+		);
+		console.log(handleApi);
 	};
 	const onFinishFailed = (errorInfo) => {
 		console.log('Failed:', errorInfo);

@@ -28,9 +28,10 @@ export const formConfig = [
 		],
 	},
 	{
-		label: 'Department',
-		name: 'department',
-		Element: <Input style={{ width: '100%' }} />,
+		label: 'Department ID',
+		name: 'departmentId',
+		type: 'number',
+		Element: <InputNumber style={{ width: '100%' }} />,
 		rules: [{ required: true, message: 'Please input title' }],
 	},
 ];

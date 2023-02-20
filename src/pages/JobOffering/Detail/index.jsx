@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom';
 import Box from '../../../components/Box';
 import CustomCard from '../../../components/Card';
 import jobOfferingApi from '../../../utils/Apis/jobOffering';
+import { convertToEditor } from '../../../utils/DraftjsHelper';
 import { initData } from './initData';
 
 const { Title, Text } = Typography;
@@ -25,7 +26,7 @@ const PostDetail = () => {
 			setData(response);
 			setEditorState(
 				//TODO: change to convertFromRaw when api ready
-				EditorState.createWithContent(ContentState.createFromText(response.description))
+				convertToEditor(JSON.parse(response.description))
 			);
 		};
 		fetch();

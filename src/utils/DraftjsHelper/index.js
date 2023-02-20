@@ -11,3 +11,7 @@ export const convertToEditor = (rawState) => {
 	const editorState = EditorState.createWithContent(contentState);
 	return editorState;
 };
+
+export const getValueFromBlock = (content) => {
+	return content.blocks.map((item) => (!item.text.trim() && '\n') || item.text).join('\n');
+};

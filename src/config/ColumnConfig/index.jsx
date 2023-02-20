@@ -1,8 +1,12 @@
-import { Space } from 'antd';
+import { Space, Typography } from 'antd';
+import { Editor } from 'react-draft-wysiwyg';
 import { Link } from 'react-router-dom';
 
+import CustomEditor from '../../components/Editor';
 import { routeKey } from '../../components/Layout/ManagerItems';
+import { convertToEditor, getValueFromBlock } from '../../utils/DraftjsHelper';
 
+const { Text } = Typography;
 export const applicantColumns = [
 	{
 		title: 'Name',
@@ -50,6 +54,7 @@ export const postColumns = [
 		title: 'Description',
 		dataIndex: 'description',
 		ellipsis: true,
+		render: (value) => <Text>{getValueFromBlock(JSON.parse(value))}</Text>,
 	},
 	{
 		title: 'Salary',
