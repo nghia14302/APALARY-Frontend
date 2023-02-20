@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react';
 
+import { Alert, Button } from 'antd';
+
 import './App.css';
 import LayoutEveryone from './components/Layout/LayoutEveryone';
 import LayoutManager from './components/Layout/LayoutManager';
+import ErrorPage from './pages/Errors';
 import AppRoutes from './routes';
 
 import ErrorBoundary from 'antd/es/alert/ErrorBoundary';
