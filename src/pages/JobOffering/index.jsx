@@ -10,8 +10,8 @@ import jobOfferingApi from '../../utils/Apis/jobOffering';
 import useSearch from '../../utils/hooks/useSearch';
 
 export const JobOffering = () => {
-	const [data, setData] = useState();
-	const [filteredData, setFilteredData] = useState();
+	const [data, setData] = useState([]);
+	const [filteredData, setFilteredData] = useState([]);
 	// const searchRef = useRef('');
 	// const [searchText, setSearchText] = useState('');
 	const [searchText, searchRef, onSearchChange] = useSearch();
@@ -58,6 +58,12 @@ export const JobOffering = () => {
 		};
 		fetch();
 	}, []);
+	useEffect(() => {
+		const tmp = data.filter((item) =>
+			item.title.toLowerCase().includes(searchText.toLowerCase())
+		);
+		setFilteredData(tmp);
+	}, [searchText]);
 	return (
 		<CustomCard>
 			<Box direction='vertical'>

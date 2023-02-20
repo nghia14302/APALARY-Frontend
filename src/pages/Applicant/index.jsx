@@ -39,7 +39,7 @@ const Applicants = () => {
 				item.name.toLowerCase().includes(search.toLowerCase()) && item.status === activeKey
 		);
 		setFilteredData(tmp);
-	}, [searchRef, activeKey]);
+	}, [search, activeKey]);
 	return (
 		<CustomCard>
 			<Box direction='vertical'>
