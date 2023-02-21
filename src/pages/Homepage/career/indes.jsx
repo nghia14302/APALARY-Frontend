@@ -1,88 +1,15 @@
 import { useEffect } from 'react';
 import { useState } from 'react';
 
-import { Col, Row, Space, Table } from 'antd';
+import { Col, Row, Space, Table, Modal } from 'antd';
 
-import careerImg from '../../../assets/homepage/career-bg.jpg';
+import careerImg from '../../../assets/homepage/hiring.png';
 import jobOfferingApi from '../../../utils/Apis/jobOffering';
-import { buttonStyle, componentStyle, imgStyle, textOverflow, titleStyle } from './styles';
+import { getValueFromBlock } from '../../../utils/DraftjsHelper';
+import ApplyJob from '../../ApplyJob/index';
+import { buttonStyle, componentStyle, imgStyle, titleStyle } from './styles';
 
 const { Column } = Table;
-
-// const data = [
-// 	{
-// 		id: '1',
-// 		key: '1',
-// 		title: 'Nhân viên văn phòng',
-// 		maxEmployee: 32,
-// 		description: 'New York No. 1 Lake Park',
-// 		baseSalary: '$3000',
-// 	},
-// 	{
-// 		id: '2',
-// 		key: '2',
-// 		title: 'Nhân viên văn phòng',
-// 		maxEmployee: 42,
-// 		description: 'London No. 1 Lake Park',
-// 		baseSalary: '$3000',
-// 	},
-// 	{
-// 		id: '3',
-// 		key: '3',
-// 		title: 'Nhân viên văn phòng',
-// 		maxEmployee: 32,
-// 		description: 'Sydney No. 1 Lake Park',
-// 		baseSalary: '$3000',
-// 	},
-// 	{
-// 		id: '4',
-// 		key: '4',
-// 		title: 'Nhân viên văn phòng',
-// 		maxEmployee: 32,
-// 		description: 'New York No. 1 Lake Park',
-// 		baseSalary: '$3000',
-// 	},
-// 	{
-// 		id: '5',
-// 		key: '5',
-// 		title: 'Nhân viên văn phòng',
-// 		maxEmployee: 42,
-// 		description: 'London No. 1 Lake Park',
-// 		baseSalary: '$3000',
-// 	},
-// 	{
-// 		id: '6',
-// 		key: '6',
-// 		title: 'Nhân viên văn phòng',
-// 		maxEmployee: 32,
-// 		description: 'Sydney No. 1 Lake Park',
-// 		baseSalary: '$3000',
-// 	},
-// 	{
-// 		id: '7',
-// 		key: '7',
-// 		title: 'Nhân viên văn phòng',
-// 		maxEmployee: 32,
-// 		description: 'New York No. 1 Lake Park',
-// 		baseSalary: '$3000',
-// 	},
-// 	{
-// 		id: '8',
-// 		key: '8',
-// 		title: 'Nhân viên văn phòng',
-// 		maxEmployee: 42,
-// 		description: 'London No. 1 Lake Park',
-// 		baseSalary: '$3000',
-// 	},
-// 	{
-// 		id: '9',
-// 		key: '9',
-// 		title: 'Nhân viên văn phòng',
-// 		maxEmployee: 32,
-// 		description: 'Sydney No. 1 Lake Park',
-// 		baseSalary: '$3000',
-// 	},
-// ];
 
 export default function Career() {
 	const [list, setList] = useState([]);
@@ -93,10 +20,22 @@ export default function Career() {
 				...todo,
 				key: index,
 				baseSalary: todo.baseSalary + ' $',
+				description: getValueFromBlock(JSON.parse(todo.description)),
 			}));
 			setList(realData);
 		});
 	}, []);
+
+	const [idModal, setIdModal] = useState(null);
+	const showModal = (id) => {
+		setIdModal(id);
+	};
+	const handleOk = () => {
+		setIdModal(null);
+	};
+	const handleCancel = () => {
+		setIdModal(null);
+	};
 
 	return (
 		<Row style={componentStyle} justify='space-between'>
@@ -127,14 +66,21 @@ export default function Career() {
 						key='action'
 						render={({ id }) => (
 							<Space size='middle'>
-								<a style={buttonStyle}>Detail</a>
-								<a style={buttonStyle}>Apply</a>
+								<a style={buttonStyle} href={`/job-offering/detail/${id}`}>
+									Detail
+								</a>
+								<a style={buttonStyle} onClick={() => showModal(id)}>
+									Apply
+								</a>
 							</Space>
 						)}
 						width={115}
 					/>
 				</Table>
 			</Col>
+			<Modal open={idModal} onOk={handleOk} onCancel={handleCancel} centered footer={null}>
+				<ApplyJob onOk={handleOk} id={idModal} />
+			</Modal>
 		</Row>
 	);
 }
