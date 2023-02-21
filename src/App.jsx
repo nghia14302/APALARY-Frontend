@@ -13,13 +13,13 @@ import ErrorBoundary from 'antd/es/alert/ErrorBoundary';
 function App() {
 	const fakeUser = {
 		name: 'asv',
-		token: 'asdfasdf',
+		token: localStorage.getItem('token'),
 		// TODO: change role from api
-		role: 'everyone',
+		role: localStorage.getItem('role'),
 	};
 	const [Layout, setLayout] = useState('LayoutEveryone');
 	useEffect(() => {
-		if (fakeUser.role === 'manager') {
+		if (fakeUser.role === 'HR_MANAGER') {
 			setLayout('LayoutManager');
 		}
 	}, []);

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Button, Form, Input, Typography } from 'antd';
+import { Button, Form, Input, Spin, Typography } from 'antd';
 import { useNavigate } from 'react-router-dom';
 
 import characterImage from '../../assets/login/character.png';
@@ -11,23 +11,38 @@ import authApi from '../../utils/Apis/auth';
 import { LoginComponent } from './style';
 
 import { UserOutlined } from '@ant-design/icons';
-import { LockOutlined } from '@ant-design/icons/lib/icons';
+import { LoadingOutlined, LockOutlined } from '@ant-design/icons/lib/icons';
 
 const { Title } = Typography;
 
 export default function Login() {
 	const [loginError, setLoginError] = React.useState(false);
+	const [isSpin, setIsSpin] = React.useState(false);
 	const navigate = useNavigate();
 
-	const onFinish = (values) => {
-		authApi
+	const antIcon = (
+		<LoadingOutlined
+			style={{
+				fontSize: 18,
+				marginLeft: '5px',
+			}}
+			spin
+		/>
+	);
+
+	const onFinish = async (values) => {
+		await setIsSpin(true);
+		await authApi
 			.login(values)
-			.then((response) => {
+			.then(async (response) => {
 				setLoginError(false);
-				localStorage.setItem('token', response.data);
-				return navigate('/');
+				localStorage.setItem('token', response.data.token);
+				localStorage.setItem('role', response.data.role);
+				window.location.reload();
+				setTimeout(() => navigate('/dashboard'), 500);
 			})
 			.catch(() => setLoginError(true));
+		await setIsSpin(false);
 	};
 
 	return (
@@ -87,8 +102,14 @@ export default function Login() {
 					)}
 
 					<Form.Item>
-						<Button type='primary' htmlType='submit' className='login-form-button'>
+						<Button
+							type='primary'
+							htmlType='submit'
+							className='login-form-button'
+							disabled={isSpin}
+						>
 							Log in
+							{isSpin && <Spin indicator={antIcon} />}
 						</Button>
 					</Form.Item>
 				</Form>

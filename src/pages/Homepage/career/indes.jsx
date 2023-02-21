@@ -1,10 +1,12 @@
 import { useEffect } from 'react';
 import { useState } from 'react';
 
-import { Col, Row, Space, Table } from 'antd';
+import { Col, Row, Space, Table, Modal } from 'antd';
 
 import careerImg from '../../../assets/homepage/hiring.png';
 import jobOfferingApi from '../../../utils/Apis/jobOffering';
+import { getValueFromBlock } from '../../../utils/DraftjsHelper';
+import ApplyJob from '../../ApplyJob/index';
 import { buttonStyle, componentStyle, imgStyle, titleStyle } from './styles';
 
 const { Column } = Table;
@@ -18,10 +20,22 @@ export default function Career() {
 				...todo,
 				key: index,
 				baseSalary: todo.baseSalary + ' $',
+				description: getValueFromBlock(JSON.parse(todo.description)),
 			}));
 			setList(realData);
 		});
 	}, []);
+
+	const [idModal, setIdModal] = useState(null);
+	const showModal = (id) => {
+		setIdModal(id);
+	};
+	const handleOk = () => {
+		setIdModal(null);
+	};
+	const handleCancel = () => {
+		setIdModal(null);
+	};
 
 	return (
 		<Row style={componentStyle} justify='space-between'>
@@ -52,14 +66,21 @@ export default function Career() {
 						key='action'
 						render={({ id }) => (
 							<Space size='middle'>
-								<a style={buttonStyle}>Detail</a>
-								<a style={buttonStyle}>Apply</a>
+								<a style={buttonStyle} href={`/job-offering/detail/${id}`}>
+									Detail
+								</a>
+								<a style={buttonStyle} onClick={() => showModal(id)}>
+									Apply
+								</a>
 							</Space>
 						)}
 						width={115}
 					/>
 				</Table>
 			</Col>
+			<Modal open={idModal} onOk={handleOk} onCancel={handleCancel} centered footer={null}>
+				<ApplyJob onOk={handleOk} id={idModal} />
+			</Modal>
 		</Row>
 	);
 }

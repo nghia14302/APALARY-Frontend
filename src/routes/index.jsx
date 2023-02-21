@@ -6,10 +6,12 @@ import LayoutEveryone from '../components/Layout/LayoutEveryone';
 import LayoutManager from '../components/Layout/LayoutManager';
 import { routeKey } from '../components/Layout/ManagerItems';
 import Applicants from '../pages/Applicant/indes';
+import ApplyJob from '../pages/ApplyJob';
 import ErrorPage from '../pages/Errors';
 import Feedback from '../pages/Feedback/Feedback.jsx';
 import Home from '../pages/Home';
 import Homepage from '../pages/Homepage';
+import JobOfferingDetail from '../pages/Homepage/job-offering';
 import JobOffering from '../pages/JobOffering';
 import PostCreation from '../pages/JobOffering/CreatePages';
 import PostDetail from '../pages/JobOffering/Detail';
@@ -21,29 +23,16 @@ import PublicRoute from './PublicRoute';
 // public routes here
 const publicRoutes = [
 	{
-		path: routeKey.dashBoard,
+		path: routeKey.homepage,
 		Element: <Homepage />,
-		role: 'everyone',
-	},
-	{
-		path: '/',
-		Element: <Homepage />,
-	},
-	{
-		path: routeKey.employeesAll,
-		Element: <Home />,
-	},
-	{
-		path: '/feedback',
-		Element: <Feedback />,
-	},
-	{
-		path: '/profile',
-		Element: <FormDisabledDemo />,
 	},
 	{
 		path: '/login',
 		Element: <Login />,
+	},
+	{
+		path: '/job-offering/detail/:id',
+		Element: <JobOfferingDetail />,
 	},
 ];
 
@@ -78,18 +67,26 @@ const managerRoutes = [
 		path: routeKey.posts,
 		Element: <JobOffering />,
 	},
+	{
+		path: '/feedback',
+		Element: <Feedback />,
+	},
+	{
+		path: '/profile',
+		Element: <FormDisabledDemo />,
+	},
 ];
 
 const AppRoutes = () => {
 	return (
 		<Routes>
-			<Route path={''} element={<PublicRoute role='everyone' />}>
-				{publicRoutes.map((route, index) => (
+			<Route path={''} element={<PrivateRoute role='HR_MANAGER' />}>
+				{managerRoutes.map((route, index) => (
 					<Route key={index} element={route.Element} path={route.path} />
 				))}
 			</Route>
-			<Route path={''} element={<PrivateRoute role='manager' />}>
-				{managerRoutes.map((route, index) => (
+			<Route path={''} element={<PublicRoute />}>
+				{publicRoutes.map((route, index) => (
 					<Route key={index} element={route.Element} path={route.path} />
 				))}
 			</Route>
