@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react';
 
+import { Alert, Button } from 'antd';
+
 import './App.css';
 import LayoutEveryone from './components/Layout/LayoutEveryone';
 import LayoutManager from './components/Layout/LayoutManager';
+import ErrorPage from './pages/Errors';
 import AppRoutes from './routes';
 
 import ErrorBoundary from 'antd/es/alert/ErrorBoundary';
@@ -10,13 +13,13 @@ import ErrorBoundary from 'antd/es/alert/ErrorBoundary';
 function App() {
 	const fakeUser = {
 		name: 'asv',
-		token: 'asdfasdf',
+		token: localStorage.getItem('token'),
 		// TODO: change role from api
-		role: 'everyone',
+		role: localStorage.getItem('role'),
 	};
 	const [Layout, setLayout] = useState('LayoutEveryone');
 	useEffect(() => {
-		if (fakeUser.role === 'manager') {
+		if (fakeUser.role === 'HR_MANAGER') {
 			setLayout('LayoutManager');
 		}
 	}, []);

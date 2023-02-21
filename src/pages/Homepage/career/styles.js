@@ -10,11 +10,9 @@ export const titleStyle = {
 };
 export const imgStyle = {
 	width: '100%',
-	boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px',
-	borderRadius: '10px',
-	overflow: 'hidden',
-	// paddingTop: '5px',
-	// background: '#D6DDFF',
+	position: 'absolute',
+	top: '50%',
+	transform: 'translateY(-50%)',
 };
 export const buttonStyle = {
 	color: themeConfig.token.colorPrimary,

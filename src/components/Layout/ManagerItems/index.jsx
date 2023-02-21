@@ -20,7 +20,10 @@ export const routeKey = {
 	applicationDayLeave: '/application/day-leave',
 	applicationRecruitment: '/application/recruitment',
 	posts: '/posts',
+	postsCreate: '/posts/create',
+	postsSpecific: '/posts/:id',
 	applicants: '/applicants',
+	applicantsSpecific: '/applicants/:id',
 };
 
 export const getMenuItem = (label, key, icon, children, type) => {
