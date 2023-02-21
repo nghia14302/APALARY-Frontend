@@ -19,68 +19,12 @@ import FormDisabledDemo from '../pages/Profile/Profile';
 import Login from '../pages/login';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
-
-// public routes here
-const publicRoutes = [
-	{
-		path: routeKey.homepage,
-		Element: <Homepage />,
-	},
-	{
-		path: '/login',
-		Element: <Login />,
-	},
-	{
-		path: '/job-offering/detail/:id',
-		Element: <JobOfferingDetail />,
-	},
-];
-
-// private routes here
-const managerRoutes = [
-	{
-		path: routeKey.applicants,
-		Element: <Applicants />,
-	},
-	{
-		path: routeKey.dashBoard,
-		Element: <Home />,
-	},
-	{
-		path: routeKey.postsCreate,
-		Element: <PostCreation />,
-	},
-	{
-		path: routeKey.postsSpecific,
-		Element: <PostDetail />,
-	},
-	{
-		path: '/admin',
-		Element: <Home />,
-	},
-	{
-		path: routeKey.employeesAll,
-		Element: <Home />,
-	},
-
-	{
-		path: routeKey.posts,
-		Element: <JobOffering />,
-	},
-	{
-		path: '/feedback',
-		Element: <Feedback />,
-	},
-	{
-		path: '/profile',
-		Element: <FormDisabledDemo />,
-	},
-];
+import { managerRoutes, publicRoutes, roles } from './roles';
 
 const AppRoutes = () => {
 	return (
 		<Routes>
-			<Route path={''} element={<PrivateRoute role='HR_MANAGER' />}>
+			<Route path={''} element={<PrivateRoute role={roles.HR_MANAGER} />}>
 				{managerRoutes.map((route, index) => (
 					<Route key={index} element={route.Element} path={route.path} />
 				))}

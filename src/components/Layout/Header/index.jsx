@@ -10,6 +10,7 @@ import { StepBackwardOutlined } from '@ant-design/icons';
 
 const StyledHeader = (props) => {
 	const navigate = useNavigate();
+	const token = null;
 	const { style, isDashBoard } = props;
 	return (
 		<Header style={style}>
@@ -24,9 +25,21 @@ const StyledHeader = (props) => {
 				)}
 			</div>
 			<div>
-				<Dropdown menu={{ items: dropDownItem }} placement='bottomLeft'>
-					<Avatar />
-				</Dropdown>
+				{token ? (
+					<Dropdown
+						menu={{
+							items: dropDownItem.filter(
+								(item) => (token && !item.isLogin) || (!token && item.isLogin)
+								//(!A  & !B) | (A & B)
+							),
+						}}
+						placement='bottomLeft'
+					>
+						<Avatar />
+					</Dropdown>
+				) : (
+					<Button onClick={() => navigate('/login')}>Login</Button>
+				)}
 			</div>
 		</Header>
 	);
