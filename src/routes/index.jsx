@@ -62,6 +62,10 @@ const managerRoutes = [
 		Element: <PostCreation />,
 	},
 	{
+		path: routeKey.postsEdit,
+		Element: <PostCreation />,
+	},
+	{
 		path: routeKey.postsSpecific,
 		Element: <PostDetail />,
 	},

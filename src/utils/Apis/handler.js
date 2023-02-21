@@ -17,7 +17,9 @@ export const apiHandler = async (api, action, successMessage, setLoading, ...res
 			if (response.status === 400) {
 				throw new Error('Bad request');
 			}
-			toast(successMessage, 'success');
+			if (successMessage && successMessage !== '') {
+				toast(successMessage, 'success');
+			}
 			return response.data;
 		})
 		.catch((error) => {
@@ -26,7 +28,9 @@ export const apiHandler = async (api, action, successMessage, setLoading, ...res
 			return error;
 		})
 		.finally(() => {
-			setLoading(false);
+			if (setLoading) {
+				setLoading(false);
+			}
 		});
 	return result;
 };
