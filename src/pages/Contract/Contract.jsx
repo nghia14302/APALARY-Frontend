@@ -14,6 +14,7 @@ import {
 	Checkbox,
 	Upload,
 } from 'antd';
+import dayjs from 'dayjs';
 
 import data from './data.js';
 
@@ -23,7 +24,7 @@ const { RangePicker } = DatePicker;
 const dateFormat = 'YYYY/MM/DD';
 const { TextArea } = Input;
 
-const FormDisabledDemo = () => {
+const Contract = () => {
 	const { name, base, tax, signDate, startDate, endDate, description, type } = data[0];
 	return (
 		<>
@@ -37,28 +38,30 @@ const FormDisabledDemo = () => {
 					<Input value={name} />
 				</Form.Item>
 
-				<Form.Item label='Select'>
+				<Form.Item label='Type Of Work'>
 					<Select value={type}>
 						<Select.Option value='Full time'>Fulltime</Select.Option>
 						<Select.Option value='Part time'>Parttime</Select.Option>
 					</Select>
 				</Form.Item>
-				<Form.Item label='DatePicker'>
-					<DatePicker />
+				<Form.Item label='SignDate'>
+					<DatePicker value={dayjs(signDate, 'YYYY-MM-DD')} />
 				</Form.Item>
-				<Form.Item label='RangePicker'>
-					<RangePicker />
+				<Form.Item label='Term'>
+					<RangePicker
+						value={[dayjs(startDate, 'YYYY-MM-DD'), dayjs(endDate, 'YYYY-MM-DD')]}
+					/>
 				</Form.Item>
 
 				<Form.Item label='Salary'>
-					<Input value={base} />
+					<Input value={base} readOnly />
 				</Form.Item>
 				<Form.Item label='Tax'>
-					<Input value={tax} />
+					<Input value={tax} readOnly />
 				</Form.Item>
 
 				<Form.Item label='Upload' valuePropName='fileList'>
-					<Upload action='/upload.do' listType='picture-card'>
+					<Upload listType='picture-card'>
 						<div>
 							<PlusOutlined />
 							<div style={{ marginTop: 8 }}>Upload</div>
@@ -70,4 +73,4 @@ const FormDisabledDemo = () => {
 	);
 };
 
-export default () => <FormDisabledDemo />;
+export default () => <Contract />;

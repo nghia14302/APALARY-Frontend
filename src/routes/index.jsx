@@ -7,21 +7,17 @@ import LayoutManager from '../components/Layout/LayoutManager';
 import { routeKey } from '../components/Layout/ManagerItems';
 import Contract from '../pages/Contract/Contract';
 import EmDashboard from '../pages/EmDashboard';
+import EmSalary from '../pages/EmSalary/Salary';
 import ErrorPage from '../pages/Errors';
 import Feedback from '../pages/Feedback/Feedback.jsx';
 import Home from '../pages/Home';
 import Homepage from '../pages/Homepage';
-import Salary from '../pages/eSalary/Salary';
+import FormDisabledDemo from '../pages/Profile/Profile';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 
 // public routes here
 const publicRoutes = [
-	{
-		path: routeKey.dashBoard,
-		Element: <EmDashboard />,
-		role: 'everyone',
-	},
 	{
 		path: '/',
 		Element: <Homepage />,
@@ -30,8 +26,27 @@ const publicRoutes = [
 		path: routeKey.employeesAll,
 		Element: <Home />,
 	},
+	{
+		path: '/feedback',
+		Element: <Feedback />,
+	},
+	{
+		path: '/profile',
+		Element: <FormDisabledDemo />,
+	},
+	{
+		path: '/salary',
+		Element: <EmSalary />,
+	},
+	{
+		path: '/contract',
+		Element: <Contract />,
+	},
+	{
+		path: '/dashboard',
+		Element: <EmDashboard />,
+	},
 ];
-//sdff
 // private routes here
 const managerRoutes = [
 	{

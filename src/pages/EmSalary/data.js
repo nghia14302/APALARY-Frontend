@@ -1,47 +1,47 @@
 const data = [
 	{
 		month: 'January',
-		sales: 20000000,
+		sales: 1000,
 	},
 	{
 		month: 'February',
-		sales: 24000000,
+		sales: 1200,
 	},
 	{
 		month: 'March',
-		sales: 19000000,
+		sales: 900,
 	},
 	{
 		month: 'April',
-		sales: 20100000,
+		sales: 956,
 	},
 	{
 		month: 'June',
-		sales: 10000000,
+		sales: 400,
 	},
 	{
 		month: 'July',
-		sales: 10000000,
+		sales: 1000,
 	},
 	{
 		month: 'August',
-		sales: 10000000,
+		sales: 1000,
 	},
 	{
 		month: 'September',
-		sales: 10000000,
+		sales: 1000,
 	},
 	{
 		month: 'October',
-		sales: 10000000,
+		sales: 1000,
 	},
 	{
 		month: 'November',
-		sales: 10000000,
+		sales: 1000,
 	},
 	{
 		month: 'December',
-		sales: 10000000,
+		sales: 1000,
 	},
 ];
 export default data;

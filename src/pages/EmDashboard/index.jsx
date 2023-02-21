@@ -1,11 +1,19 @@
-import { Layout, Card, Image, Row, Col } from 'antd';
+import { Layout, Card, Image, Row, Col, Rate, Form } from 'antd';
+import { FaMoneyBillWave } from 'react-icons/fa';
 import { VscFeedback } from 'react-icons/vsc';
+import { NavLink, Routes, Route } from 'react-router-dom';
+
+import FeedBacks from '../Feedback/data.js';
+import Profile from '../Profile/Profile';
+import ProData from '../Profile/data.js';
 
 import { FileTextFilled, IdcardFilled, ProfileFilled, MailFilled } from '@ant-design/icons';
 
 const { Header, Content, Footer } = Layout;
 
 const EmDashboard = () => {
+	const { star } = FeedBacks[0];
+	const { name, phone, number, username, password, gender, date } = ProData[0];
 	return (
 		<Layout className='layout'>
 			<Header style={{ background: '#F0F0F0', height: 10 }}></Header>
@@ -14,20 +22,20 @@ const EmDashboard = () => {
 					background: '#F0F0F0',
 				}}
 			>
-				<Card
-					bordered={true}
-					style={{
-						width: 'auto',
-						borderRadius: 5,
-						marginLeft: 20,
-						marginRight: 20,
-					}}
-				>
-					<Image
-						style={{ width: '100%', height: 250 }}
-						src='https://www.umassalumni.com/s/1640/images/gid2/editor/alumni_association/campus_partners/architecture/dbexterior.jpg'
-					></Image>
-				</Card>
+				<Row>
+					<Col offset={8}>
+						<Card>
+							<Image
+								style={{
+									width: 'auto',
+									height: 250,
+									borderRadius: 20,
+								}}
+								src='https://www.umassalumni.com/s/1640/images/gid2/editor/alumni_association/campus_partners/architecture/dbexterior.jpg'
+							></Image>
+						</Card>
+					</Col>
+				</Row>
 			</Content>
 			<Footer
 				style={{
@@ -35,25 +43,90 @@ const EmDashboard = () => {
 				}}
 			>
 				<Row gutter={18}>
-					<Col span={12}>
+					<Col span={10} offset={1}>
 						<Row>
-							<Col span={4.5} offset={6}>
-								<Card bordered={true} style={{ background: '#F0F0F0' }}>
-									<MailFilled style={{ fontSize: 50, marginLeft: 10 }} />
-									<p>Application</p>
-								</Card>
+							<Col span={2} offset={3}>
+								<NavLink to='/application'>
+									<Card
+										hoverable
+										bordered={true}
+										style={{ background: '#F0F0F0', width: 120, height: 120 }}
+									>
+										<MailFilled style={{ fontSize: 50, marginLeft: 10 }} />
+										Application
+									</Card>
+								</NavLink>
 							</Col>
-							<Col span={6.5} offset={2}>
-								<Card bordered={true} style={{ background: '#F0F0F0' }}>
-									<FileTextFilled style={{ fontSize: 50 }} />
-									<p>Contract</p>
-								</Card>
+							<Col span={4} offset={4}>
+								<NavLink to='/contract'>
+									<Card
+										hoverable
+										bordered={true}
+										style={{ background: '#F0F0F0', width: 120, height: 120 }}
+									>
+										<div style={{ marginLeft: 10 }}>
+											<FileTextFilled
+												style={{ fontSize: 50, marginLeft: 1 }}
+											/>
+											Contract
+										</div>
+									</Card>
+								</NavLink>
+							</Col>
+							<Col span={2} offset={2}>
+								<NavLink to='/salary'>
+									<Card
+										bordered={true}
+										style={{ background: '#F0F0F0', width: 120, height: 120 }}
+									>
+										<div style={{ marginLeft: 10 }}>
+											<FaMoneyBillWave
+												style={{ fontSize: 50, marginBottom: -5 }}
+											/>
+											Salary
+										</div>
+									</Card>
+								</NavLink>
 							</Col>
 						</Row>
-						<Card cover={<VscFeedback style={{ fontSize: 35 }} />}></Card>
+
+						<Card
+							title={<VscFeedback style={{ fontSize: 50, marginLeft: 240 }} />}
+							style={{ marginTop: 10 }}
+						>
+							<p style={{ borderBottomStyle: 'solid' }}>
+								<Rate
+									disabled
+									value={star}
+									style={{
+										marginLeft: 155,
+										fontSize: 40,
+									}}
+								/>
+							</p>
+							<NavLink to='/feedback' style={{ fontSize: 20 }}>
+								See More....
+							</NavLink>
+						</Card>
 					</Col>
 					<Col span={12}>
-						<Card>abc</Card>
+						<Card bordered={false}>
+							<Card
+								title='Personal Information'
+								bordered={false}
+								style={{
+									border: '2px solid black',
+									height: 310,
+									textAlign: 'center',
+								}}
+							>
+								<Form.Item label='Full Name'>{name}</Form.Item>
+								<Form.Item label='Id'>{number}</Form.Item>
+								<Form.Item label='UserName'>{username}</Form.Item>
+
+								<NavLink to='/profile'>More</NavLink>
+							</Card>
+						</Card>
 					</Col>
 				</Row>
 			</Footer>
