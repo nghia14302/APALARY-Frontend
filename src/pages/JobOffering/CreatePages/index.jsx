@@ -56,9 +56,10 @@ const PostCreation = () => {
 				// setData(res);
 				// setEditorState(convertToEditor(JSON.parse(res.description)));
 				if (params.id) {
-					const rest = await jobOfferingApi.getOne(params.id).then((res) => res.data);
-					setData(rest);
-					setEditorState(convertToEditor(JSON.parse(rest.description)));
+					const res = await jobOfferingApi.getOne(params.id).then((res) => res.data);
+					setData(res);
+					form.setFieldsValue(res);
+					setEditorState(convertToEditor(JSON.parse(res.description)));
 				}
 			}
 		};
@@ -92,26 +93,15 @@ const PostCreation = () => {
 										label={item.label}
 										name={item.name}
 										rules={[...item.rules]}
+										initialValue={data[item.name]}
 									>
 										{
 											item.type === 'number' ? (
-												<InputNumber
-													style={{ width: '100%' }}
-													defaultValue={data[item.name]}
-													value={data[item.name]}
-												/>
+												<InputNumber style={{ width: '100%' }} />
 											) : item.type === 'text' ? (
-												<Input
-													style={{ width: '100%' }}
-													defaultValue={data[item.name]}
-													value={data[item.name]}
-												/>
+												<Input style={{ width: '100%' }} />
 											) : item.type === 'textarea' ? (
-												<TextArea
-													style={{ width: '100%' }}
-													defaultValue={data[item.name]}
-													value={data[item.name]}
-												/>
+												<TextArea style={{ width: '100%' }} />
 											) : null
 											// <Input />
 										}
