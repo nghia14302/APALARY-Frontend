@@ -32,5 +32,5 @@ export const apiHandler = async (api, action, successMessage, setLoading, ...res
 				setLoading(false);
 			}
 		});
-	return result;
+	return await result;
 };

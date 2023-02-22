@@ -11,7 +11,6 @@ export const formConfig = [
 		label: 'Base Salary',
 		name: 'baseSalary',
 		type: 'number',
-
 		rules: [
 			{ type: 'number', min: 0, message: 'Please, Enter a valid number' },
 			{ required: true, message: 'Please input a valid number' },

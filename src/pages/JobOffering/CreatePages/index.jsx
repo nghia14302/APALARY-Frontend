@@ -11,6 +11,7 @@ import CustomEditor from '../../../components/Editor';
 import toast from '../../../components/Toast';
 import { apiHandler } from '../../../utils/Apis/handler';
 import jobOfferingApi from '../../../utils/Apis/jobOffering';
+import { convertToEditor } from '../../../utils/DraftjsHelper';
 import { usePersistedState } from '../../../utils/LocalStorage/usePersistedState';
 import themeConfig from '../../../utils/Theme';
 import { initData } from '../Detail/initData';
@@ -47,7 +48,18 @@ const PostCreation = () => {
 	useEffect(() => {
 		const fetch = async () => {
 			if (params.id) {
-				await apiHandler(jobOfferingApi, 'getOne', '', null, params.id).then((data) => {});
+				// const res = await apiHandler(jobOfferingApi, 'getOne', '', null, params.id).then(
+				// 	(res) => {
+				// 		return res;
+				// 	}
+				// );
+				// setData(res);
+				// setEditorState(convertToEditor(JSON.parse(res.description)));
+				if (params.id) {
+					const rest = await jobOfferingApi.getOne(params.id).then((res) => res.data);
+					setData(rest);
+					setEditorState(convertToEditor(JSON.parse(rest.description)));
+				}
 			}
 		};
 		fetch();
@@ -86,16 +98,19 @@ const PostCreation = () => {
 												<InputNumber
 													style={{ width: '100%' }}
 													defaultValue={data[item.name]}
+													value={data[item.name]}
 												/>
 											) : item.type === 'text' ? (
 												<Input
 													style={{ width: '100%' }}
 													defaultValue={data[item.name]}
+													value={data[item.name]}
 												/>
 											) : item.type === 'textarea' ? (
 												<TextArea
 													style={{ width: '100%' }}
 													defaultValue={data[item.name]}
+													value={data[item.name]}
 												/>
 											) : null
 											// <Input />
