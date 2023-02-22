@@ -1,19 +1,27 @@
 import { createContext, useContext, useEffect, useRef, useState } from 'react';
 
+import { Space, Table } from 'antd';
+import { Link } from 'react-router-dom';
+
 import Box from '../../components/Box';
 import CustomCard from '../../components/Card';
+import { routeKey } from '../../components/Layout/ManagerItems';
 import SearchBar from '../../components/SearchBar';
 import CustomTable from '../../components/Table';
 import toast from '../../components/Toast';
 import { paginationConfig, postColumns } from '../../config/ColumnConfig';
+import { apiHandler } from '../../utils/Apis/handler';
 import jobOfferingApi from '../../utils/Apis/jobOffering';
+import { usePersistedState } from '../../utils/LocalStorage/usePersistedState';
 import useSearch from '../../utils/hooks/useSearch';
 
+const { Column } = Table;
 export const JobOffering = () => {
 	const [data, setData] = useState([]);
 	const [filteredData, setFilteredData] = useState([]);
 	// const searchRef = useRef('');
 	// const [searchText, setSearchText] = useState('');
+	const [token] = usePersistedState('token');
 	const [searchText, searchRef, onSearchChange] = useSearch();
 	const [loading, setLoading] = useState(false);
 	const [tableParams, setTableParams] = useState({
@@ -33,6 +41,20 @@ export const JobOffering = () => {
 		if (pagination.pageSize !== tableParams.pagination?.pageSize) {
 			setData([]);
 		}
+	};
+	const handleDelete = async (id) => {
+		const tmpData = data.filter((item) => item.id !== id);
+		await apiHandler(
+			jobOfferingApi,
+			'delete',
+			'Success Deleted Post',
+			setLoading,
+			id,
+			token
+		).then(() => {
+			setData(tmpData);
+			setFilteredData(tmpData);
+		});
 	};
 	// Fetching data from jobOfferingApi
 	useEffect(() => {
@@ -77,8 +99,29 @@ export const JobOffering = () => {
 					addNewButton={true}
 					onSearch={onSearchChange}
 					onChange={handleTableChange}
-					columns={postColumns}
-				/>
+				>
+					{postColumns.map((column) => (
+						<Column
+							title={column.title}
+							dataIndex={column.dataIndex}
+							key={column.key}
+							sorter={column.sorter}
+							sortOrder={tableParams.columnKey === column.key && tableParams.order}
+							ellipsis={column.ellipsis}
+							render={column.render}
+						/>
+					))}
+					<Column
+						title={'Action'}
+						key={'action'}
+						render={(text, record) => (
+							<Space size='middle'>
+								<Link to={`${routeKey.posts}/${record.id}/edit`}>Edit</Link>
+								<Link onClick={() => handleDelete(record.id)}>Delete</Link>
+							</Space>
+						)}
+					/>
+				</CustomTable>
 			</Box>
 		</CustomCard>
 	);

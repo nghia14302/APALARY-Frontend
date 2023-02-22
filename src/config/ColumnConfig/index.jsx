@@ -2,18 +2,18 @@ import { useState } from 'react';
 
 import { Button, Space, Typography } from 'antd';
 import { Editor } from 'react-draft-wysiwyg';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 
 import CustomEditor from '../../components/Editor';
 import { routeKey } from '../../components/Layout/ManagerItems';
 import { apiHandler } from '../../utils/Apis/handler';
 import jobOfferingApi from '../../utils/Apis/jobOffering';
 import { convertToEditor, getValueFromBlock } from '../../utils/DraftjsHelper';
+import { usePersistedState } from '../../utils/LocalStorage/usePersistedState';
+import LocalStorageUtils from '../../utils/LocalStorage/utils';
 
 const { Text } = Typography;
-const handleDelete = async (id) => {
-	const result = await apiHandler(jobOfferingApi, 'delete', 'Success Deleted Post', null, id);
-};
+
 export const applicantColumns = [
 	{
 		title: 'Name',
@@ -74,15 +74,6 @@ export const postColumns = [
 	{
 		title: 'Status',
 		dataIndex: 'status',
-	},
-	{
-		title: 'Action',
-		render: (_, record) => (
-			<Space size='middle'>
-				<Link to={`${routeKey.posts}/${record.id}/edit`}>Edit</Link>
-				<Link onClick={handleDelete}>Delete</Link>
-			</Space>
-		),
 	},
 ];
 export const paginationConfig = {

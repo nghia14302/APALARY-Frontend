@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 
 import Box from '../../../components/Box';
 import CustomCard from '../../../components/Card';
+import { apiHandler } from '../../../utils/Apis/handler';
 import jobOfferingApi from '../../../utils/Apis/jobOffering';
 import { convertToEditor } from '../../../utils/DraftjsHelper';
 import { initData } from './initData';
@@ -13,13 +14,14 @@ import { initData } from './initData';
 const { Title, Text } = Typography;
 const PostDetail = () => {
 	const params = useParams();
+	const [loading, setLoading] = useState(true);
 	const [data, setData] = useState(initData);
 	const id = params.id;
 	const [editorState, setEditorState] = useState(EditorState.createEmpty());
 
 	useEffect(() => {
 		const fetch = async () => {
-			const response = await jobOfferingApi.getOne(id).then((res) => res.data);
+			const response = await apiHandler(jobOfferingApi, 'getOne', '', setLoading, id);
 			// if (response.status === 403) {
 			// 	return;
 			// }
@@ -33,17 +35,17 @@ const PostDetail = () => {
 	}, []);
 	return (
 		<Box>
-			<CustomCard bordered>
+			<CustomCard bordered loading={loading}>
 				<Box direction='vertical'>
 					<Box direction='vertical' align='center'>
 						<Title>{data.title}</Title>
 					</Box>
 					<Box direction='vertical'>
 						<Title level={5} type='danger'>
-							Lương Tới: {data.baseSalary}
+							Up to: {data.baseSalary}
 						</Title>
 						<Text level={5} type='success'>
-							Số lượng tuyển tối đa: {data.maxEmployee}
+							Max Employees: {data.maxEmployee}
 						</Text>
 						<Editor readOnly editorState={editorState}></Editor>
 					</Box>

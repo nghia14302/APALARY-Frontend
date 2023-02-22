@@ -1,4 +1,4 @@
-import { Table, Row, Col, Button, Tabs } from 'antd';
+import { Table, Row, Col, Button, Tabs, Space } from 'antd';
 import { Link } from 'react-router-dom';
 
 import { tabStatusConfig } from '../../config/TabsConfig';
@@ -14,6 +14,7 @@ export const CustomTable = ({
 	onSearch,
 	activeKey,
 	onTabChange,
+	children,
 	...rest
 }) => {
 	return (
@@ -48,7 +49,9 @@ export const CustomTable = ({
 				</Col>
 			</Row>
 			<Row>
-				<Table columns={columns} {...rest} />
+				<Table columns={columns} {...rest}>
+					{children}
+				</Table>
 			</Row>
 		</Box>
 	);

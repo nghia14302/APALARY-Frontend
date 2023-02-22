@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 
-import { Button, Form, Input, InputNumber, Typography } from 'antd';
+import { Button, Form, Input, InputNumber, Skeleton, Typography } from 'antd';
 import { convertToRaw, EditorState } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 import Box from '../../../components/Box';
 import CustomCard from '../../../components/Card';
@@ -17,6 +17,7 @@ import themeConfig from '../../../utils/Theme';
 import { initData } from '../Detail/initData';
 import { formConfig } from './formConfig';
 
+import Meta from 'antd/es/card/Meta';
 import TextArea from 'antd/es/input/TextArea';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
@@ -24,8 +25,9 @@ const { Title, Text } = Typography;
 const PostCreation = () => {
 	const params = useParams();
 	const [data, setData] = useState(initData);
-	const [token, setToken] = usePersistedState('token');
+	const [token] = usePersistedState('token');
 	const [loading, setLoading] = useState(false);
+	const navigate = useNavigate();
 	const [form] = Form.useForm();
 	const [editorState, setEditorState] = useState(EditorState.createEmpty());
 	const onSubmit = async () => {
@@ -34,31 +36,33 @@ const PostCreation = () => {
 		const completedForm = {
 			id: params.id,
 			...formData,
+			createdTime: data.createdTime,
 			description: JSON.stringify(raw),
 			// TODO: change to user id when login is done
 			employeeId: 1,
 		};
 		if (params.id) {
 			await apiHandler(jobOfferingApi, 'put', 'success', setLoading, completedForm, token);
+			navigate(-1);
 			return;
 		}
 		await apiHandler(jobOfferingApi, 'post', 'success', setLoading, completedForm, token);
+		navigate(-1);
 	};
 	// TODO: fix that the input fields don't receive data from fetch
 	useEffect(() => {
 		const fetch = async () => {
 			if (params.id) {
-				// const res = await apiHandler(jobOfferingApi, 'getOne', '', null, params.id).then(
-				// 	(res) => {
-				// 		return res;
-				// 	}
-				// );
-				// setData(res);
-				// setEditorState(convertToEditor(JSON.parse(res.description)));
 				if (params.id) {
-					const res = await jobOfferingApi.getOne(params.id).then((res) => res.data);
-					setData(res);
+					const res = await apiHandler(
+						jobOfferingApi,
+						'getOne',
+						'',
+						setLoading,
+						params.id
+					);
 					form.setFieldsValue(res);
+					setData(res);
 					setEditorState(convertToEditor(JSON.parse(res.description)));
 				}
 			}
@@ -70,7 +74,7 @@ const PostCreation = () => {
 	};
 	return (
 		<Box>
-			<CustomCard bordered width='800px'>
+			<CustomCard bordered width='800px' loading={loading}>
 				<Box direction='vertical'>
 					<Box direction='vertical' align='center'>
 						{params.id ? (
@@ -93,7 +97,6 @@ const PostCreation = () => {
 										label={item.label}
 										name={item.name}
 										rules={[...item.rules]}
-										initialValue={data[item.name]}
 									>
 										{
 											item.type === 'number' ? (

@@ -6,6 +6,7 @@ import toast from '../../components/Toast';
 
 // Whenever you use strict mode, it will render twice. So, the notification will show twice. But, it will not show twice in production mode. So, don't worry about it.
 export const apiHandler = async (api, action, successMessage, setLoading, ...rest) => {
+	setLoading(true);
 	const result = await api[action](...rest)
 		.then((response) => {
 			if (response.status === 404) {

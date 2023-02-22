@@ -1,4 +1,4 @@
-import { del, get, post } from '../caller';
+import { del, get, post, put } from '../caller';
 
 const jobOfferingApi = {
 	getJobOffering: async () => {
@@ -17,13 +17,19 @@ const jobOfferingApi = {
 	},
 	put: async (data, token) => {
 		const endpoint = '/job-offering';
-		return await post(endpoint, data, {
+		return await put(endpoint, data, {
 			Authorization: 'Bearer ' + token,
 		});
 	},
-	delete: async (id) => {
+	delete: async (id, token) => {
 		const endpoint = '/job-offering/' + id;
-		return await del(endpoint);
+		return await del(
+			endpoint,
+			{},
+			{
+				Authorization: 'Bearer ' + token,
+			}
+		);
 	},
 };
 
