@@ -3,6 +3,7 @@ import { FaMoneyBillWave } from 'react-icons/fa';
 import { VscFeedback } from 'react-icons/vsc';
 import { NavLink, Routes, Route } from 'react-router-dom';
 
+import Box from '../../components/Box/index.jsx';
 import FeedBacks from '../Feedback/data.js';
 import Profile from '../Profile/Profile';
 import ProData from '../Profile/data.js';
@@ -15,35 +16,28 @@ const EmDashboard = () => {
 	const { star } = FeedBacks[0];
 	const { name, phone, number, username, password, gender, date } = ProData[0];
 	return (
-		<Layout className='layout'>
-			<Header style={{ background: '#F0F0F0', height: 10 }}></Header>
+		<Box direction='vertical'>
 			<Content
 				style={{
+					borderRadius: 20,
 					background: '#F0F0F0',
 				}}
 			>
-				<Row>
-					<Col offset={8}>
-						<Card>
-							<Image
-								style={{
-									width: 'auto',
-									height: 250,
-									borderRadius: 20,
-								}}
-								src='https://www.umassalumni.com/s/1640/images/gid2/editor/alumni_association/campus_partners/architecture/dbexterior.jpg'
-							></Image>
-						</Card>
-					</Col>
-				</Row>
+				<Image
+					width='100%'
+					height={250}
+					style={{ borderRadius: 20 }}
+					src='https://www.umassalumni.com/s/1640/images/gid2/editor/alumni_association/campus_partners/architecture/dbexterior.jpg'
+				></Image>
 			</Content>
 			<Footer
 				style={{
 					background: '#F0F0F0',
+					width: '100%',
 				}}
 			>
 				<Row gutter={18}>
-					<Col span={10} offset={1}>
+					<Col span={10}>
 						<Row>
 							<Col span={2} offset={3}>
 								<NavLink to='/application'>
@@ -130,7 +124,7 @@ const EmDashboard = () => {
 					</Col>
 				</Row>
 			</Footer>
-		</Layout>
+		</Box>
 	);
 };
 export default EmDashboard;

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { Button, Col, Form, Input, Row, Tag } from 'antd';
+import { Button, Col, Form, Input, notification, Row, Tag } from 'antd';
 
 import FacebookIcon from '../../../assets/homepage/facebook-logo.png';
 import GmailIcon from '../../../assets/homepage/gmail-logo.png';
@@ -20,6 +20,8 @@ import {
 const { TextArea } = Input;
 
 export default function Contact() {
+	const [api, contextHolder] = notification.useNotification();
+	const [form] = Form.useForm();
 	const [onHover, setOnHover] = useState(false);
 
 	const buttonHover = {
@@ -31,6 +33,16 @@ export default function Contact() {
 		...buttonStyle,
 		color: themeConfig.token.colorPrimary,
 		background: 'white',
+	};
+	const openNotificationWithIcon = (name) => {
+		api['success']({
+			message: 'Send successfully',
+			description: `We will response to ${name} soon ❤️`,
+		});
+	};
+	const handleSubmit = (values) => {
+		openNotificationWithIcon(values.name);
+		form.resetFields();
 	};
 
 	return (
@@ -67,16 +79,22 @@ export default function Contact() {
 				</Row>
 			</Col>
 			<Col span={11}>
+				{contextHolder}
 				<Form
+					form={form}
 					layout='horizontal'
 					size={{
 						size: 'large',
 					}}
-					onValuesChange={() => alert('Values')}
 					style={formStyle}
+					onFinish={handleSubmit}
 				>
 					<h3 style={titleStyle}>Contact Us</h3>
-					<Form.Item>
+					<Form.Item
+						name='name'
+						rules={[{ required: true, message: 'Please input your name!' }]}
+						style={{ textAlign: 'start' }}
+					>
 						<Input
 							prefix={
 								<Tag color={themeConfig.token.colorPrimary} style={tagStyle}>
@@ -86,7 +104,11 @@ export default function Contact() {
 							placeholder='Nguyen Van A'
 						/>
 					</Form.Item>
-					<Form.Item>
+					<Form.Item
+						rules={[{ required: true, message: 'Please input your email!' }]}
+						name='email'
+						style={{ textAlign: 'start' }}
+					>
 						<Input
 							prefix={
 								<Tag color={themeConfig.token.colorPrimary} style={tagStyle}>
@@ -97,7 +119,11 @@ export default function Contact() {
 							type='email'
 						/>
 					</Form.Item>
-					<Form.Item>
+					<Form.Item
+						rules={[{ required: true, message: 'Please input your subject!' }]}
+						name='subject'
+						style={{ textAlign: 'start' }}
+					>
 						<Input
 							prefix={
 								<Tag color={themeConfig.token.colorPrimary} style={tagStyle}>
@@ -113,6 +139,9 @@ export default function Contact() {
 								Message
 							</p>
 						}
+						rules={[{ required: true, message: 'Please input your message!' }]}
+						name='message'
+						style={{ textAlign: 'start' }}
 					>
 						<TextArea placeholder='Today I feel so good' />
 					</Form.Item>
@@ -120,6 +149,7 @@ export default function Contact() {
 						style={onHover ? buttonHover : buttonBlur}
 						onMouseEnter={() => setOnHover(true)}
 						onMouseLeave={() => setOnHover(false)}
+						htmlType='submit'
 					>
 						Submit
 					</Button>

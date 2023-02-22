@@ -1,16 +1,14 @@
 import { Navigate, Outlet } from 'react-router';
 
-const PublicRoute = (props) => {
-	const { role } = props;
-	const fakeUser = {
-		name: 'fake',
-		token: null,
-		role: 'everyone',
-	};
-	if (!fakeUser.token || fakeUser.role === 'everyone') {
+import { usePersistedState } from '../utils/LocalStorage/usePersistedState';
+
+const PublicRoute = () => {
+	const [token, setToken] = usePersistedState('token', '');
+
+	if (!token) {
 		return <Outlet />;
 	}
-	return <Navigate to='/login' />;
+	// return <Navigate to='/dashboard' />;
 };
 
 export default PublicRoute;

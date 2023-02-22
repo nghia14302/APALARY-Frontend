@@ -2,13 +2,18 @@ import { useState } from 'react';
 
 import { Button, Col, Row } from 'antd';
 
-import hero from '../../../assets/homepage/hero.png';
+import calendar from '../../../assets/homepage/logo-dashboard/calendar-icon.png';
+import character from '../../../assets/homepage/logo-dashboard/character.png';
+import chart from '../../../assets/homepage/logo-dashboard/chart-icon.png';
+import money from '../../../assets/homepage/logo-dashboard/money-icon.png';
+import shape from '../../../assets/homepage/logo-dashboard/shape.png';
+import target from '../../../assets/homepage/logo-dashboard/target-icon.png';
 import themeConfig from '../../../utils/Theme';
 import {
 	buttonStyle,
 	componentStyle,
 	contentStyle,
-	Image,
+	LogoDashboard,
 	spanTitleStyle,
 	titleStyle,
 } from './styles';
@@ -47,7 +52,14 @@ export default function Dashboard({ scrollFunc }) {
 				</Button>
 			</Col>
 			<Col span={12} style={{ textAlign: 'end' }}>
-				<Image src={hero} alt='decoration' />
+				<LogoDashboard>
+					<img src={shape} alt='shape' className='shape' />
+					<img src={character} alt='character' className='character' />
+					<img src={calendar} alt='calendar' className='calendar' />
+					<img src={money} alt='money' className='money' />
+					<img src={chart} alt='chart' className='chart' />
+					<img src={target} alt='target' className='target' />
+				</LogoDashboard>
 			</Col>
 		</Row>
 	);
