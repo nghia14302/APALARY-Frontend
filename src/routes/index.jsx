@@ -12,6 +12,9 @@ import ErrorPage from '../pages/Errors';
 import Feedback from '../pages/Feedback/Feedback.jsx';
 import Home from '../pages/Home';
 import Homepage from '../pages/Homepage';
+import JobOffering from '../pages/JobOffering';
+import PostCreation from '../pages/JobOffering/CreatePages';
+import PostDetail from '../pages/JobOffering/Detail';
 import FormDisabledDemo from '../pages/Profile/Profile';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
@@ -50,8 +53,20 @@ const publicRoutes = [
 // private routes here
 const managerRoutes = [
 	{
+		path: routeKey.applicants,
+		Element: <Applicants />,
+	},
+	{
 		path: routeKey.dashBoard,
 		Element: <Home />,
+	},
+	{
+		path: routeKey.postsCreate,
+		Element: <PostCreation />,
+	},
+	{
+		path: routeKey.postsSpecific,
+		Element: <PostDetail />,
 	},
 	{
 		path: '/admin',
@@ -60,6 +75,11 @@ const managerRoutes = [
 	{
 		path: routeKey.employeesAll,
 		Element: <Home />,
+	},
+
+	{
+		path: routeKey.posts,
+		Element: <JobOffering />,
 	},
 ];
 

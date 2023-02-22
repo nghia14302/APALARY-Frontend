@@ -17,18 +17,18 @@ export default function Homepage() {
 				<Dashboard scrollFunc={executeScroll} />
 			</div>
 
-			<div data-aos='fade-left' data-aos-duration='1000' data-aos-delay='100'>
+			<div data-aos='fade-left' data-aos-duration='1000' data-aos-delay='50'>
 				<Environment />
 			</div>
 			<div
 				ref={careerRef}
 				data-aos='zoom-in-left'
 				data-aos-duration='1000'
-				data-aos-delay='100'
+				data-aos-delay='50'
 			>
 				<Career />
 			</div>
-			<div data-aos='fade-right' data-aos-duration='1000' data-aos-delay='100'>
+			<div data-aos='fade-right' data-aos-duration='1000' data-aos-delay='50'>
 				<Contact />
 			</div>
 
