@@ -1,7 +1,6 @@
-import { get } from '../caller';
+import { get, post } from '../caller';
 
-const token =
-	'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlbXBsb3llZTIiLCJpYXQiOjE2NzY4MDc3NDYsImV4cCI6MTY3NjgwOTE4Nn0.gT5GgrpfFUMfzJGj8JPY2Bs945jjtqeMRl6-RyWWKvQ';
+const token = localStorage.getItem('token');
 const applicantAPI = {
 	get: async () => {
 		const endpoint = '/applicant';
@@ -16,6 +15,16 @@ const applicantAPI = {
 				Authorization: 'Bearer ' + token,
 			}
 		);
+	},
+	createApplicant: async (body) => {
+		console.log(body);
+		const endpoint = `/applicant`;
+		try {
+			return await post(endpoint, body);
+		} catch (error) {
+			console.log(error);
+			return false;
+		}
 	},
 };
 

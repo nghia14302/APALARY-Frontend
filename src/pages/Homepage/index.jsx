@@ -20,12 +20,7 @@ export default function Homepage() {
 			<div data-aos='fade-left' data-aos-duration='1000' data-aos-delay='50'>
 				<Environment />
 			</div>
-			<div
-				ref={careerRef}
-				data-aos='zoom-in-left'
-				data-aos-duration='1000'
-				data-aos-delay='50'
-			>
+			<div ref={careerRef}>
 				<Career />
 			</div>
 			<div data-aos='fade-right' data-aos-duration='1000' data-aos-delay='50'>

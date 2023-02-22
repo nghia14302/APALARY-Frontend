@@ -1,16 +1,13 @@
 import { Navigate, Outlet } from 'react-router';
 
-const PublicRoute = (props) => {
-	const { role } = props;
+const PublicRoute = () => {
 	const fakeUser = {
-		name: 'fake',
-		token: null,
-		role: 'everyone',
+		token: localStorage.getItem('token'),
 	};
-	if (!fakeUser.token || fakeUser.role === 'everyone') {
+	if (!fakeUser.token) {
 		return <Outlet />;
 	}
-	return <Navigate to='/login' />;
+	// return <Navigate to='/dashboard' />;
 };
 
 export default PublicRoute;
