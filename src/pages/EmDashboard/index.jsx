@@ -37,26 +37,34 @@ const EmDashboard = () => {
 				}}
 			>
 				<Row gutter={18}>
-					<Col span={10}>
+					<Col span={12}>
 						<Row>
-							<Col span={2} offset={3}>
+							<Col span={8}>
 								<NavLink to='/application'>
 									<Card
 										hoverable
 										bordered={true}
-										style={{ background: '#F0F0F0', width: 120, height: 120 }}
+										style={{
+											background: '#F0F0F0',
+											width: '100%',
+											height: 120,
+										}}
 									>
 										<MailFilled style={{ fontSize: 50, marginLeft: 10 }} />
 										Application
 									</Card>
 								</NavLink>
 							</Col>
-							<Col span={4} offset={4}>
+							<Col span={8}>
 								<NavLink to='/contract'>
 									<Card
 										hoverable
 										bordered={true}
-										style={{ background: '#F0F0F0', width: 120, height: 120 }}
+										style={{
+											background: '#F0F0F0',
+											width: '100%',
+											height: 120,
+										}}
 									>
 										<div style={{ marginLeft: 10 }}>
 											<FileTextFilled
@@ -67,11 +75,15 @@ const EmDashboard = () => {
 									</Card>
 								</NavLink>
 							</Col>
-							<Col span={2} offset={2}>
+							<Col span={8}>
 								<NavLink to='/salary'>
 									<Card
-										bordered={true}
-										style={{ background: '#F0F0F0', width: 120, height: 120 }}
+										hoverable
+										style={{
+											background: '#F0F0F0',
+											width: '100%',
+											height: 120,
+										}}
 									>
 										<div style={{ marginLeft: 10 }}>
 											<FaMoneyBillWave
@@ -85,7 +97,7 @@ const EmDashboard = () => {
 						</Row>
 
 						<Card
-							title={<VscFeedback style={{ fontSize: 50, marginLeft: 240 }} />}
+							title={<VscFeedback style={{ fontSize: 50 }} />}
 							style={{ marginTop: 10 }}
 						>
 							<p style={{ borderBottomStyle: 'solid' }}>
@@ -93,14 +105,11 @@ const EmDashboard = () => {
 									disabled
 									value={star}
 									style={{
-										marginLeft: 155,
 										fontSize: 40,
 									}}
 								/>
 							</p>
-							<NavLink to='/feedback' style={{ fontSize: 20 }}>
-								See More....
-							</NavLink>
+							<NavLink to='/feedback'>See More....</NavLink>
 						</Card>
 					</Col>
 					<Col span={12}>
