@@ -12,12 +12,20 @@ const AppRoutes = () => {
 		<Routes>
 			<Route path={''} element={<PrivateRoute role={roles.HR_MANAGER} />}>
 				{managerRoutes.map((route, index) => (
-					<Route key={index} element={route.Element} path={route.path} />
+					<Route
+						key={index + route.path + 'manager'}
+						element={route.Element}
+						path={route.path}
+					/>
 				))}
 			</Route>
 			<Route path={''} element={<PublicRoute />}>
 				{publicRoutes.map((route, index) => (
-					<Route key={index} element={route.Element} path={route.path} />
+					<Route
+						key={index + route.path + 'public'}
+						element={route.Element}
+						path={route.path}
+					/>
 				))}
 			</Route>
 			<Route path={'/error/:statusCode'} element={<ErrorPage />} />

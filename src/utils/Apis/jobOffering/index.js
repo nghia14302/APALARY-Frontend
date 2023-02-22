@@ -1,8 +1,5 @@
 import { del, get, post } from '../caller';
 
-const token =
-	'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlbXBsb3llZTEiLCJpYXQiOjE2NzY5NjQxNzYsImV4cCI6MTY3Njk2NTYxNn0.iihPn0UhDxkWISfAqcZhqZyLrJA_mCC5WkcNqNBjXgc';
-
 const jobOfferingApi = {
 	getJobOffering: async () => {
 		const endpoint = '/job-offering';
@@ -12,7 +9,13 @@ const jobOfferingApi = {
 		const endpoint = '/job-offering/' + id;
 		return await get(endpoint);
 	},
-	post: async (data) => {
+	post: async (data, token) => {
+		const endpoint = '/job-offering';
+		return await post(endpoint, data, {
+			Authorization: 'Bearer ' + token,
+		});
+	},
+	put: async (data, token) => {
 		const endpoint = '/job-offering';
 		return await post(endpoint, data, {
 			Authorization: 'Bearer ' + token,

@@ -8,6 +8,7 @@ import codeImage from '../../assets/login/code.png';
 import laptopImage from '../../assets/login/laptop-blank.png';
 import screenImage from '../../assets/login/screen.png';
 import authApi from '../../utils/Apis/auth';
+import LocalStorageUtils from '../../utils/LocalStorage/utils';
 import { LoginComponent } from './style';
 
 import { UserOutlined } from '@ant-design/icons';
@@ -36,9 +37,10 @@ export default function Login() {
 			.login(values)
 			.then(async (response) => {
 				setLoginError(false);
-				localStorage.setItem('token', response.data.token);
-				localStorage.setItem('role', response.data.role);
-				window.location.reload();
+				LocalStorageUtils.setItem('token', response.data.token);
+				LocalStorageUtils.setItem('role', response.data.role);
+				// to reload page, using navigate(0)
+				navigate(0);
 				setTimeout(() => navigate('/dashboard'), 500);
 			})
 			.catch(() => setLoginError(true));

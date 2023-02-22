@@ -11,6 +11,7 @@ import CustomEditor from '../../../components/Editor';
 import toast from '../../../components/Toast';
 import { apiHandler } from '../../../utils/Apis/handler';
 import jobOfferingApi from '../../../utils/Apis/jobOffering';
+import { usePersistedState } from '../../../utils/LocalStorage/usePersistedState';
 import themeConfig from '../../../utils/Theme';
 import { initData } from '../Detail/initData';
 import { formConfig } from './formConfig';
@@ -22,6 +23,7 @@ const { Title, Text } = Typography;
 const PostCreation = () => {
 	const params = useParams();
 	const [data, setData] = useState(initData);
+	const [token, setToken] = usePersistedState('token');
 	const [loading, setLoading] = useState(false);
 	const [form] = Form.useForm();
 	const [editorState, setEditorState] = useState(EditorState.createEmpty());
@@ -36,10 +38,10 @@ const PostCreation = () => {
 			employeeId: 1,
 		};
 		if (params.id) {
-			await apiHandler(jobOfferingApi, 'put', 'success', setLoading, completedForm);
+			await apiHandler(jobOfferingApi, 'put', 'success', setLoading, completedForm, token);
 			return;
 		}
-		await apiHandler(jobOfferingApi, 'post', 'success', setLoading, completedForm);
+		await apiHandler(jobOfferingApi, 'post', 'success', setLoading, completedForm, token);
 	};
 	// TODO: fix that the input fields don't receive data from fetch
 	useEffect(() => {

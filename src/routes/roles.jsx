@@ -1,7 +1,7 @@
 import LayoutEveryone from '../components/Layout/LayoutEveryone';
 import LayoutManager from '../components/Layout/LayoutManager';
 import { routeKey } from '../components/Layout/ManagerItems';
-import Applicants from '../pages/Applicant/indes';
+import Applicants from '../pages/Applicant';
 import ApplyJob from '../pages/ApplyJob';
 import ErrorPage from '../pages/Errors';
 import Feedback from '../pages/Feedback/Feedback.jsx';
@@ -51,6 +51,10 @@ export const managerRoutes = [
 	},
 	{
 		path: routeKey.postsCreate,
+		Element: <PostCreation />,
+	},
+	{
+		path: routeKey.postsEdit,
 		Element: <PostCreation />,
 	},
 	{

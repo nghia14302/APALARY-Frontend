@@ -3,6 +3,7 @@ import { Content, Header } from 'antd/es/layout/layout';
 import { useNavigate } from 'react-router-dom';
 
 import Logo from '../../../assets';
+import { usePersistedState } from '../../../utils/LocalStorage/usePersistedState';
 import { menuLogo } from '../style';
 import dropDownItem from './DropdownItem';
 
@@ -10,8 +11,14 @@ import { StepBackwardOutlined } from '@ant-design/icons';
 
 const StyledHeader = (props) => {
 	const navigate = useNavigate();
-	const token = null;
+	const [token, setToken] = usePersistedState('token');
+	const [role, setRole] = usePersistedState('role');
 	const { style, isDashBoard } = props;
+	const logout = () => {
+		setToken('');
+		setRole('');
+		navigate(0);
+	};
 	return (
 		<Header style={style}>
 			<div>
@@ -32,6 +39,7 @@ const StyledHeader = (props) => {
 								(item) => (token && !item.isLogin) || (!token && item.isLogin)
 								//(!A  & !B) | (A & B)
 							),
+							onClick: logout,
 						}}
 						placement='bottomLeft'
 					>
