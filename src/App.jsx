@@ -4,7 +4,7 @@ import './App.css';
 import LayoutEveryone from './components/Layout/LayoutEveryone';
 import LayoutManager from './components/Layout/LayoutManager';
 import AppRoutes from './routes';
-import { usePersistedState } from './utils/LocalStorage/usePersistedState';
+import usePersistedState from './utils/LocalStorage/usePersistedState';
 
 import ErrorBoundary from 'antd/es/alert/ErrorBoundary';
 

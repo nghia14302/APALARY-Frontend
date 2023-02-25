@@ -13,10 +13,10 @@ import ApplyJob from '../../ApplyJob/index';
 import { StepBackwardOutlined } from '@ant-design/icons';
 
 const { Title, Text } = Typography;
-export default function JobOfferingDetail() {
+const JobOfferingDetail = () => {
 	const params = useParams();
 	const navigate = useNavigate();
-	const [data, setData] = useState();
+	const [data, setData] = useState([]);
 	const id = params.id;
 	const [editorState, setEditorState] = useState(EditorState.createEmpty());
 
@@ -87,4 +87,6 @@ export default function JobOfferingDetail() {
 			</Modal>
 		</Box>
 	);
-}
+};
+
+export default JobOfferingDetail;

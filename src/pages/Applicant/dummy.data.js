@@ -5,7 +5,7 @@ export const fakeData = [
 		phone: '0123456789',
 		email: 'asdf@gmail.com',
 		role: 'manager',
-		status: 'approved',
+		status: 'APPROVED',
 	},
 	{
 		id: 2,
@@ -13,6 +13,6 @@ export const fakeData = [
 		phone: '0123456789',
 		email: 'sdafas@gmail.com',
 		role: 'manager',
-		status: 'waiting',
+		status: 'PROCESSING',
 	},
 ];

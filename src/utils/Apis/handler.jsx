@@ -1,12 +1,19 @@
 import React, { useState } from 'react';
 
 import { notification } from 'antd';
+import { Navigate } from 'react-router-dom';
 
 import toast from '../../components/Toast';
+import usePersistedState from '../LocalStorage/usePersistedState';
+import LocalStorageUtils from '../LocalStorage/utils';
 
 // Whenever you use strict mode, it will render twice. So, the notification will show twice. But, it will not show twice in production mode. So, don't worry about it.
-export const apiHandler = async (api, action, successMessage, setLoading, ...rest) => {
-	setLoading(true);
+const apiHandler = async (api, action, successMessage, setLoading, ...rest) => {
+	if (setLoading) {
+		setLoading(true);
+	}
+	// const [token, setToken] = usePersistedState('token');
+	// const [role, setRole] = usePersistedState('role');
 	const result = await api[action](...rest)
 		.then((response) => {
 			if (response.status === 404) {
@@ -24,7 +31,11 @@ export const apiHandler = async (api, action, successMessage, setLoading, ...res
 			return response.data;
 		})
 		.catch((error) => {
-			console.log(error);
+			const status = error.response.status;
+			if (status === 401 || status === 403) {
+				LocalStorageUtils.clear();
+				return <Navigate to='/' />;
+			}
 			toast(error.message, 'error');
 			return error;
 		})
@@ -33,5 +44,7 @@ export const apiHandler = async (api, action, successMessage, setLoading, ...res
 				setLoading(false);
 			}
 		});
-	return await result;
+	return result;
 };
+
+export default apiHandler;

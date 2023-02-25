@@ -1,6 +1,6 @@
 import { Navigate, Outlet } from 'react-router';
 
-import { usePersistedState } from '../utils/LocalStorage/usePersistedState';
+import usePersistedState from '../utils/LocalStorage/usePersistedState';
 
 const PrivateRoute = (props) => {
 	const { role } = props;

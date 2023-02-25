@@ -25,6 +25,7 @@ export const CustomTable = ({
 						<Col>
 							{onTabChange && (
 								<Tabs
+									defaultActiveKey='PROCESSING'
 									activeKey={activeKey}
 									onChange={onTabChange}
 									items={tabStatusConfig.map((item) => item)}

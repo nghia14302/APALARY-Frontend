@@ -9,10 +9,10 @@ import Box from '../../../components/Box';
 import CustomCard from '../../../components/Card';
 import CustomEditor from '../../../components/Editor';
 import toast from '../../../components/Toast';
-import { apiHandler } from '../../../utils/Apis/handler';
+import apiHandler from '../../../utils/Apis/handler';
 import jobOfferingApi from '../../../utils/Apis/jobOffering';
 import { convertToEditor } from '../../../utils/DraftjsHelper';
-import { usePersistedState } from '../../../utils/LocalStorage/usePersistedState';
+import usePersistedState from '../../../utils/LocalStorage/usePersistedState';
 import themeConfig from '../../../utils/Theme';
 import { initData } from '../Detail/initData';
 import { formConfig } from './formConfig';
@@ -41,6 +41,7 @@ const PostCreation = () => {
 			// TODO: change to user id when login is done
 			employeeId: 1,
 		};
+		console.log(completedForm);
 		if (params.id) {
 			await apiHandler(jobOfferingApi, 'put', 'success', setLoading, completedForm, token);
 			navigate(-1);

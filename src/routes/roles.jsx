@@ -2,6 +2,7 @@ import LayoutEveryone from '../components/Layout/LayoutEveryone';
 import LayoutManager from '../components/Layout/LayoutManager';
 import { routeKey } from '../components/Layout/ManagerItems';
 import Applicants from '../pages/Applicant';
+import ApplicantDetails from '../pages/Applicant/Detail';
 import ApplyJob from '../pages/ApplyJob';
 import ErrorPage from '../pages/Errors';
 import Feedback from '../pages/Feedback/Feedback.jsx';
@@ -41,6 +42,10 @@ export const publicRoutes = [
 
 // private routes here
 export const managerRoutes = [
+	{
+		path: routeKey.applicantsSpecific,
+		Element: <ApplicantDetails />,
+	},
 	{
 		path: routeKey.applicants,
 		Element: <Applicants />,

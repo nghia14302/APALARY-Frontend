@@ -1,14 +1,14 @@
 export const tabStatusConfig = [
 	{
-		key: 'waiting',
+		key: 'Processing',
 		label: 'Waiting',
 	},
 	{
-		key: 'approved',
-		label: 'Active',
+		key: 'Accepted',
+		label: 'Approved',
 	},
 	{
-		key: 'Disapproved',
-		label: 'Disapproved',
+		key: 'Rejected',
+		label: 'Rejected',
 	},
 ];

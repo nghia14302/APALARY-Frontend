@@ -10,13 +10,13 @@ import SearchBar from '../../components/SearchBar';
 import CustomTable from '../../components/Table';
 import toast from '../../components/Toast';
 import { paginationConfig, postColumns } from '../../config/ColumnConfig';
-import { apiHandler } from '../../utils/Apis/handler';
+import apiHandler from '../../utils/Apis/handler';
 import jobOfferingApi from '../../utils/Apis/jobOffering';
-import { usePersistedState } from '../../utils/LocalStorage/usePersistedState';
+import usePersistedState from '../../utils/LocalStorage/usePersistedState';
 import useSearch from '../../utils/hooks/useSearch';
 
 const { Column } = Table;
-export const JobOffering = () => {
+const JobOffering = () => {
 	const [data, setData] = useState([]);
 	const [filteredData, setFilteredData] = useState([]);
 	// const searchRef = useRef('');
@@ -104,7 +104,7 @@ export const JobOffering = () => {
 						<Column
 							title={column.title}
 							dataIndex={column.dataIndex}
-							key={column.key}
+							key={column.key + 'job-offering'}
 							sorter={column.sorter}
 							sortOrder={tableParams.columnKey === column.key && tableParams.order}
 							ellipsis={column.ellipsis}
@@ -113,7 +113,7 @@ export const JobOffering = () => {
 					))}
 					<Column
 						title={'Action'}
-						key={'action'}
+						key={'action job-offering'}
 						render={(text, record) => (
 							<Space size='middle'>
 								<Link to={`${routeKey.posts}/${record.id}/edit`}>Edit</Link>

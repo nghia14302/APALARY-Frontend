@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom';
 
 import Box from '../../../components/Box';
 import CustomCard from '../../../components/Card';
-import { apiHandler } from '../../../utils/Apis/handler';
+import apiHandler from '../../../utils/Apis/handler';
 import jobOfferingApi from '../../../utils/Apis/jobOffering';
 import { convertToEditor } from '../../../utils/DraftjsHelper';
 import { initData } from './initData';

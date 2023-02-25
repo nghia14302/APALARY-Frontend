@@ -1,16 +1,8 @@
-import { useState } from 'react';
+import { Typography } from 'antd';
+import { Link } from 'react-router-dom';
 
-import { Button, Space, Typography } from 'antd';
-import { Editor } from 'react-draft-wysiwyg';
-import { Link, Navigate } from 'react-router-dom';
-
-import CustomEditor from '../../components/Editor';
 import { routeKey } from '../../components/Layout/ManagerItems';
-import { apiHandler } from '../../utils/Apis/handler';
-import jobOfferingApi from '../../utils/Apis/jobOffering';
-import { convertToEditor, getValueFromBlock } from '../../utils/DraftjsHelper';
-import { usePersistedState } from '../../utils/LocalStorage/usePersistedState';
-import LocalStorageUtils from '../../utils/LocalStorage/utils';
+import { getValueFromBlock } from '../../utils/DraftjsHelper';
 
 const { Text } = Typography;
 
@@ -32,20 +24,9 @@ export const applicantColumns = [
 		sorter: true,
 	},
 	{
-		title: 'Department',
-		dataIndex: 'department',
+		title: 'Gender',
+		dataIndex: 'gender',
 		sorter: true,
-	},
-	{
-		title: 'Action',
-		showStatus: 'waiting',
-		render: (_, record) =>
-			record.status === 'waiting' && (
-				<Space size='middle'>
-					<Link to={`${routeKey.applicants}/${record.id}`}>Approve</Link>
-					<Link to={`${routeKey.applicants}/${record.id}`}>Delete</Link>
-				</Space>
-			),
 	},
 ];
 

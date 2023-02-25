@@ -3,7 +3,7 @@ import { Content, Header } from 'antd/es/layout/layout';
 import { useNavigate } from 'react-router-dom';
 
 import Logo from '../../../assets';
-import { usePersistedState } from '../../../utils/LocalStorage/usePersistedState';
+import usePersistedState from '../../../utils/LocalStorage/usePersistedState';
 import { menuLogo } from '../style';
 import dropDownItem from './DropdownItem';
 
