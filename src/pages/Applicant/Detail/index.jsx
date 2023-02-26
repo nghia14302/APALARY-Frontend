@@ -1,15 +1,17 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
-import { Form, Input } from 'antd';
+import { Button, Form, Input, Modal, Typography } from 'antd';
+import fs from 'fs';
 import { useParams } from 'react-router-dom';
 
-import Box from '../../../components/Box';
 import CustomCard from '../../../components/Card';
+import PDFReader from '../../../components/PDFReder';
 import applicantAPI from '../../../utils/Apis/applicantAPI';
 import apiHandler from '../../../utils/Apis/handler';
 import usePersistedState from '../../../utils/LocalStorage/usePersistedState';
 import { applicantFormConfig, gender } from './config';
 
+const { Title } = Typography;
 const ApplicantDetails = () => {
 	const params = useParams();
 	const [token] = usePersistedState('token');
@@ -20,24 +22,37 @@ const ApplicantDetails = () => {
 		const fetch = async () => {
 			const res = await apiHandler(applicantAPI, 'getOne', '', setLoading, params.id, token);
 			console.log(res);
+			let bin = Buffer.from(res.cv, 'base64');
+			fs.writeFile('test.pdf', bin, 'binary', function (err) {
+				if (err) {
+					console.log(err);
+				}
+			});
+
 			setApplicant(res);
 		};
 		fetch();
 	}, []);
 	return (
 		<CustomCard>
-			<Form>
+			<Title>Applicant Information</Title>
+			<Form layout='vertical'>
 				{applicantFormConfig.map((item) => {
 					return (
 						<Form.Item key={item.label + 'applicant-information'} label={item.label}>
 							{item.key == 'gender' ? (
-								<Input value={gender[applicant[item.key]]} readOnly />
+								<Input
+									style={{ width: '100%' }}
+									value={gender[applicant[item.key]]}
+									readOnly
+								/>
 							) : (
-								<Input value={applicant[item.key]} />
+								<Input style={{ width: '100%' }} value={applicant[item.key]} />
 							)}
 						</Form.Item>
 					);
 				})}
+				<PDFReader />
 			</Form>
 		</CustomCard>
 	);
