@@ -7,22 +7,19 @@ import LayoutEveryone from './components/Layout/LayoutEveryone';
 import LayoutManager from './components/Layout/LayoutManager';
 import ErrorPage from './pages/Errors';
 import AppRoutes from './routes';
+import { roles } from './routes/roles';
+import { usePersistedState } from './utils/LocalStorage/usePersistedState';
 
 import ErrorBoundary from 'antd/es/alert/ErrorBoundary';
 
 function App() {
-	const fakeUser = {
-		name: 'asv',
-		token: localStorage.getItem('token'),
-		// TODO: change role from api
-		role: localStorage.getItem('role'),
-	};
+	const [role, roles] = usePersistedState('role', '');
 	const [Layout, setLayout] = useState('LayoutEveryone');
 	useEffect(() => {
-		if (fakeUser.role === 'HR_MANAGER') {
+		if (role !== roles.GUEST && role !== '') {
 			setLayout('LayoutManager');
 		}
-	}, []);
+	}, [role]);
 	return (
 		<ErrorBoundary>
 			{Layout === 'LayoutEveryone' ? (
