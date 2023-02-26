@@ -1,9 +1,8 @@
-import LayoutEveryone from '../components/Layout/LayoutEveryone';
-import LayoutManager from '../components/Layout/LayoutManager';
 import { routeKey } from '../components/Layout/ManagerItems';
 import Applicants from '../pages/Applicant';
 import ApplicantDetails from '../pages/Applicant/Detail';
 import ApplyJob from '../pages/ApplyJob';
+import EmDashboard from '../pages/EmDashboard';
 import ErrorPage from '../pages/Errors';
 import Feedback from '../pages/Feedback/Feedback.jsx';
 import Home from '../pages/Home';
@@ -52,7 +51,7 @@ export const managerRoutes = [
 	},
 	{
 		path: routeKey.dashBoard,
-		Element: <Home />,
+		Element: <EmDashboard />,
 	},
 	{
 		path: routeKey.postsCreate,
@@ -86,5 +85,11 @@ export const managerRoutes = [
 	{
 		path: '/profile',
 		Element: <FormDisabledDemo />,
+	},
+];
+export const employeeRoutes = [
+	{
+		path: routeKey.dashBoard,
+		Element: <EmDashboard />,
 	},
 ];

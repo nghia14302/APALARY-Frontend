@@ -5,7 +5,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import ErrorPage from '../pages/Errors';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
-import { managerRoutes, publicRoutes, roles } from './roles';
+import { employeeRoutes, managerRoutes, publicRoutes, roles } from './roles';
 
 const AppRoutes = () => {
 	return (
@@ -17,6 +17,11 @@ const AppRoutes = () => {
 						element={route.Element}
 						path={route.path}
 					/>
+				))}
+			</Route>
+			<Route path={''} element={<PrivateRoute role={roles.HR_EMPLOYEE} />}>
+				{employeeRoutes.map((route, index) => (
+					<Route key={index} element={route.Element} path={route.path} />
 				))}
 			</Route>
 			<Route path={''} element={<PublicRoute />}>

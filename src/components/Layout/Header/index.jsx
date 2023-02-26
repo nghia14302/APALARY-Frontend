@@ -32,7 +32,7 @@ const StyledHeader = (props) => {
 				)}
 			</div>
 			<div>
-				{token ? (
+				{token && token !== '' ? (
 					<Dropdown
 						menu={{
 							items: dropDownItem.filter(

@@ -15,7 +15,7 @@ function App() {
 		if (role === 'HR_MANAGER' || role === 'HR_EMPLOYEE') {
 			setLayout('LayoutManager');
 		}
-	}, []);
+	}, [role]);
 	return (
 		<ErrorBoundary>
 			{Layout === 'LayoutEveryone' ? (
