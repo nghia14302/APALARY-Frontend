@@ -64,13 +64,13 @@ const JobOfferingDetail = () => {
 						</Box>
 						<Box direction='vertical'>
 							<Text level={5} type='danger'>
-								<b>Lương Tới:</b> {data.baseSalary} $
+								<b>Upto:</b> {data.baseSalary} $
 							</Text>
 							<Text level={5} type='success'>
-								<b>Số lượng tuyển tối đa:</b> {data.maxEmployee}
+								<b>Max Employees:</b> {data.maxEmployee}
 							</Text>
 							<Text level={5}>
-								<b>Vị trí làm việc:</b> {data.departmentName}
+								<b>Department:</b> {data.departmentName}
 							</Text>
 							<Editor readOnly editorState={editorState}></Editor>
 						</Box>

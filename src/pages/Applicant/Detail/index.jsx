@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
 import { Button, Form, Input, Modal, Typography } from 'antd';
-import fs from 'fs';
 import { useParams } from 'react-router-dom';
 
 import CustomCard from '../../../components/Card';
@@ -9,7 +8,10 @@ import PDFReader from '../../../components/PDFReder';
 import applicantAPI from '../../../utils/Apis/applicantAPI';
 import apiHandler from '../../../utils/Apis/handler';
 import usePersistedState from '../../../utils/LocalStorage/usePersistedState';
+import { convertBaseToFile } from '../../../utils/convertBaseToFile';
 import { applicantFormConfig, gender } from './config';
+
+import base64toFile from 'node-base64-to-file';
 
 const { Title } = Typography;
 const ApplicantDetails = () => {
@@ -17,18 +19,10 @@ const ApplicantDetails = () => {
 	const [token] = usePersistedState('token');
 	const [applicant, setApplicant] = React.useState({});
 	const [loading, setLoading] = React.useState(false);
-
 	useEffect(() => {
 		const fetch = async () => {
 			const res = await apiHandler(applicantAPI, 'getOne', '', setLoading, params.id, token);
-			console.log(res);
-			let bin = Buffer.from(res.cv, 'base64');
-			fs.writeFile('test.pdf', bin, 'binary', function (err) {
-				if (err) {
-					console.log(err);
-				}
-			});
-
+			// convertBaseToFile(res.cv, 'cv' + res.id);
 			setApplicant(res);
 		};
 		fetch();
