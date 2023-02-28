@@ -32,13 +32,13 @@ const Contract = () => {
 				labelCol={{ span: 4 }}
 				wrapperCol={{ span: 14 }}
 				layout='horizontal'
-				style={{ maxWidth: 600 }}
+				style={{ maxWidth: 800 }}
 			>
 				<Form.Item label='Name'>
 					<Input value={name} />
 				</Form.Item>
 
-				<Form.Item label='Type Of Work'>
+				<Form.Item label='Type Of Work' style={{ width: 600 }}>
 					<Select value={type}>
 						<Select.Option value='Full time'>Fulltime</Select.Option>
 						<Select.Option value='Part time'>Parttime</Select.Option>
@@ -50,6 +50,7 @@ const Contract = () => {
 				<Form.Item label='Term'>
 					<RangePicker
 						value={[dayjs(startDate, 'YYYY-MM-DD'), dayjs(endDate, 'YYYY-MM-DD')]}
+						style={{ width: 400 }}
 					/>
 				</Form.Item>
 
