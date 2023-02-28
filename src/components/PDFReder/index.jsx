@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { Button } from 'antd';
+import { Button, Col, Row, Typography } from 'antd';
 
 import cv from '../../assets/cv/cv.pdf';
 import Box from '../Box';
@@ -14,7 +14,9 @@ const options = {
 	cMapPacked: true,
 	standardFontDataUrl: 'standard_fonts/',
 };
-const PDFReader = () => {
+const { Text } = Typography;
+const PDFReader = (props) => {
+	const { onAccept, onReject, isWaiting } = props;
 	const [numPages, setNumPages] = useState(null);
 	const [pageNumber, setPageNumber] = useState(1);
 	const [file, setFile] = useState('./cv.pdf');
@@ -39,17 +41,27 @@ const PDFReader = () => {
 			<Document file={cv} onLoadSuccess={onDocumentLoadSuccess}>
 				<Page pageNumber={pageNumber} />
 			</Document>
-			<p>
+			<Text style={{ marginBottom: '10px' }}>
 				Page {pageNumber || (numPages ? 1 : '--')} of {numPages || '--'}
-			</p>
-			<Box>
-				<Button type='primary' disabled={pageNumber <= 1} onClick={previousPage}>
-					Previous
-				</Button>
-				<Button type='primary' disabled={pageNumber >= numPages} onClick={nextPage}>
-					Next
-				</Button>
-			</Box>
+			</Text>
+			<Row style={{ width: '100%' }} justify={'space-between'}>
+				<Col>
+					<Button type='primary' style={{ marginRight: '10px' }}>
+						Previous
+					</Button>
+					<Button type='primary'>Next</Button>
+				</Col>
+				{isWaiting && (
+					<Col>
+						<Button type='primary' style={{ marginRight: '10px' }} onClick={onAccept}>
+							Accept
+						</Button>
+						<Button type='primary' onClick={onReject}>
+							Reject
+						</Button>
+					</Col>
+				)}
+			</Row>
 		</Box>
 	);
 };

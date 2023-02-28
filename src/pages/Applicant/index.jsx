@@ -83,12 +83,7 @@ const Applicants = () => {
 							key='action-applicantColumn'
 							render={(text, record) => (
 								<Space size='middle'>
-									<Link onClick={() => onAcceptApplicant(record.id, true)}>
-										Approve
-									</Link>
-									<Link onClick={() => onAcceptApplicant(record.id, false)}>
-										Reject
-									</Link>
+									<Link to={`/applicants/${record.id}`}>View</Link>
 								</Space>
 							)}
 						/>
