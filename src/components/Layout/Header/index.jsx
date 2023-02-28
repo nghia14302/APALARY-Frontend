@@ -17,6 +17,7 @@ const StyledHeader = (props) => {
 	const logout = () => {
 		setToken('');
 		setRole('');
+		navigate('/');
 		navigate(0);
 	};
 	return (
