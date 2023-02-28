@@ -8,10 +8,7 @@ import PDFReader from '../../../components/PDFReder';
 import applicantAPI from '../../../utils/Apis/applicantAPI';
 import apiHandler from '../../../utils/Apis/handler';
 import usePersistedState from '../../../utils/LocalStorage/usePersistedState';
-import { convertBaseToFile } from '../../../utils/convertBaseToFile';
 import { applicantFormConfig, gender } from './config';
-
-import base64toFile from 'node-base64-to-file';
 
 const { Title } = Typography;
 const ApplicantDetails = () => {
