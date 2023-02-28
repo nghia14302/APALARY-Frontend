@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import { Button, Col, Form, Input, Modal, Row, Skeleton, Typography } from 'antd';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import Box from '../../../components/Box';
 import CustomCard from '../../../components/Card';
@@ -15,6 +15,7 @@ const { Title } = Typography;
 const ApplicantDetails = () => {
 	const params = useParams();
 	const [token] = usePersistedState('token');
+	const navigate = useNavigate();
 	const [applicant, setApplicant] = React.useState({});
 	const [loading, setLoading] = React.useState(false);
 	useEffect(() => {
@@ -27,9 +28,11 @@ const ApplicantDetails = () => {
 	}, []);
 	const onAccept = async () => {
 		await apiHandler(applicantAPI, 'accept', 'Success', setLoading, params.id, true, token);
+		navigate('/applicants');
 	};
 	const onReject = async () => {
 		await apiHandler(applicantAPI, 'accept', 'Success', setLoading, params.id, false, token);
+		navigate('/applicants');
 	};
 	return (
 		<CustomCard>

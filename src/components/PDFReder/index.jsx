@@ -46,10 +46,17 @@ const PDFReader = (props) => {
 			</Text>
 			<Row style={{ width: '100%' }} justify={'space-between'}>
 				<Col>
-					<Button type='primary' style={{ marginRight: '10px' }}>
+					<Button
+						type='primary'
+						style={{ marginRight: '10px' }}
+						disabled={pageNumber <= 1}
+						onClick={previousPage}
+					>
 						Previous
 					</Button>
-					<Button type='primary'>Next</Button>
+					<Button type='primary' disabled={pageNumber - numPages >= 0} onClick={nextPage}>
+						Next
+					</Button>
 				</Col>
 				{isWaiting && (
 					<Col>
