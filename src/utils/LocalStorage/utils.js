@@ -17,6 +17,11 @@ const LocalStorageUtils = {
 		localStorage.removeItem(key);
 		return true;
 	},
+	clear: () => {
+		if (localStorage === undefined) return false;
+		localStorage.clear();
+		return true;
+	},
 };
 
 export default LocalStorageUtils;

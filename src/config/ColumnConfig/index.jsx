@@ -1,7 +1,10 @@
-import { Space } from 'antd';
+import { Typography } from 'antd';
 import { Link } from 'react-router-dom';
 
 import { routeKey } from '../../components/Layout/ManagerItems';
+import { getValueFromBlock } from '../../utils/DraftjsHelper';
+
+const { Text } = Typography;
 
 export const applicantColumns = [
 	{
@@ -21,23 +24,9 @@ export const applicantColumns = [
 		sorter: true,
 	},
 	{
-		title: 'status',
-		dataIndex: 'status',
+		title: 'Gender',
+		dataIndex: 'gender',
 		sorter: true,
-	},
-	{
-		title: 'Department',
-		dataIndex: 'department',
-		sorter: true,
-	},
-	{
-		title: 'Action',
-		render: (_, record) => (
-			<Space size='middle'>
-				<Link to={`${routeKey.applicants}/${record.id}`}>Approve</Link>
-				<Link to={`${routeKey.applicants}/${record.id}/edit`}>Delete</Link>
-			</Space>
-		),
 	},
 ];
 
@@ -53,6 +42,7 @@ export const postColumns = [
 		title: 'Description',
 		dataIndex: 'description',
 		ellipsis: true,
+		render: (value) => <Text>{getValueFromBlock(JSON.parse(value))}</Text>,
 	},
 	{
 		title: 'Salary',

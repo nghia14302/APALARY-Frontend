@@ -21,6 +21,7 @@ export const routeKey = {
 	applicationRecruitment: '/application/recruitment',
 	posts: '/posts',
 	postsCreate: '/posts/create',
+	postsEdit: '/posts/:id/edit',
 	postsSpecific: '/posts/:id',
 	applicants: '/applicants',
 	applicantsSpecific: '/applicants/:id',
