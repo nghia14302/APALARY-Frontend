@@ -1,7 +1,10 @@
 import { routeKey } from '../components/Layout/ManagerItems';
 import Applicants from '../pages/Applicant/indes';
 import ApplyJob from '../pages/ApplyJob';
+import Contract from '../pages/Contract/Contract';
+import Contracts from '../pages/Contracts';
 import EmDashboard from '../pages/EmDashboard';
+import Salary from '../pages/EmSalary/Salary';
 import ErrorPage from '../pages/Errors';
 import Feedback from '../pages/Feedback/Feedback.jsx';
 import Home from '../pages/Home';
@@ -70,12 +73,24 @@ export const managerRoutes = [
 		Element: <JobOffering />,
 	},
 	{
+		path: routeKey.employeesContracts,
+		Element: <Contracts />,
+	},
+	{
 		path: '/feedback',
 		Element: <Feedback />,
 	},
 	{
 		path: '/profile',
 		Element: <FormDisabledDemo />,
+	},
+	{
+		path: '/contract',
+		Element: <Contract />,
+	},
+	{
+		path: '/salary',
+		Element: <Salary />,
 	},
 ];
 export const employeeRoutes = [

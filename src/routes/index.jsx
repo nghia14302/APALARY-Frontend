@@ -2,15 +2,12 @@ import { useEffect, useState } from 'react';
 
 import { Routes, Route, Navigate } from 'react-router-dom';
 
-<<<<<<< HEAD
 import LayoutEveryone from '../components/Layout/LayoutEveryone';
 import LayoutManager from '../components/Layout/LayoutManager';
 import { routeKey } from '../components/Layout/ManagerItems';
 import Contract from '../pages/Contract/Contract';
 import EmDashboard from '../pages/EmDashboard';
 import EmSalary from '../pages/EmSalary/Salary';
-=======
->>>>>>> 71f01d8f85ab074e3fcfc150f00ce84ab39b98f9
 import ErrorPage from '../pages/Errors';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
