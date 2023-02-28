@@ -36,6 +36,7 @@ export default function ApplyJob({ onOk, id }) {
 				name: value.name,
 				phone: value.phone,
 				email: value.email,
+				gender: value.sex,
 				cv: fileBase64,
 				jobOfferingId: id,
 			});

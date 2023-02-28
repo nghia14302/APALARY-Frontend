@@ -39,7 +39,8 @@ export default function Login() {
 				setLoginError(false);
 				LocalStorageUtils.setItem('token', response.data.token);
 				LocalStorageUtils.setItem('role', response.data.role);
-				window.location.reload();
+				// to reload page, using navigate(0)
+				navigate(0);
 				setTimeout(() => navigate('/dashboard'), 500);
 			})
 			.catch(() => setLoginError(true));
