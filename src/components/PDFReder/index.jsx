@@ -1,30 +1,22 @@
 import { useState } from 'react';
 
-import { Button, Col, Row, Typography } from 'antd';
+import { Button, Col, Row, Spin, Typography } from 'antd';
 
-import cv from '../../assets/cv/cv.pdf';
 import Box from '../Box';
 
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import 'react-pdf/dist/esm/Page/TextLayer.css';
 import { Document, Page } from 'react-pdf/dist/esm/entry.vite';
 
-const options = {
-	cMapUrl: 'cmaps/',
-	cMapPacked: true,
-	standardFontDataUrl: 'standard_fonts/',
-};
 const { Text } = Typography;
 const PDFReader = (props) => {
-	const { onAccept, onReject, isWaiting } = props;
+	const { onAccept, onReject, isWaiting, file, id } = props;
 	const [numPages, setNumPages] = useState(null);
 	const [pageNumber, setPageNumber] = useState(1);
-	const [file, setFile] = useState('./cv.pdf');
 	function onDocumentLoadSuccess({ numPages }) {
 		setNumPages(numPages);
 		setPageNumber(1);
 	}
-
 	function changePage(offset) {
 		setPageNumber((prevPageNumber) => prevPageNumber + offset);
 	}
@@ -38,7 +30,7 @@ const PDFReader = (props) => {
 	}
 	return (
 		<Box direction='vertical'>
-			<Document file={cv} onLoadSuccess={onDocumentLoadSuccess}>
+			<Document file={file} onLoadSuccess={onDocumentLoadSuccess} renderMode={<Spin />}>
 				<Page pageNumber={pageNumber} />
 			</Document>
 			<Text style={{ marginBottom: '10px' }}>

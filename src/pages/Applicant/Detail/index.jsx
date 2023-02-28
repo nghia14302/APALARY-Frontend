@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { Button, Col, Form, Input, Modal, Row, Skeleton, Typography } from 'antd';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import Box from '../../../components/Box';
 import CustomCard from '../../../components/Card';
 import PDFReader from '../../../components/PDFReder';
 import applicantAPI from '../../../utils/Apis/applicantAPI';
@@ -22,8 +21,10 @@ const ApplicantDetails = () => {
 		const fetch = async () => {
 			const res = await apiHandler(applicantAPI, 'getOne', '', setLoading, params.id, token);
 			// convertBaseToFile(res.cv, 'cv' + res.id);
+			console.log(res.cv);
 			setApplicant(res);
 		};
+
 		fetch();
 	}, []);
 	const onAccept = async () => {
@@ -60,6 +61,8 @@ const ApplicantDetails = () => {
 						);
 					})}
 					<PDFReader
+						file={applicant.cv}
+						id={applicant.id}
 						onAccept={onAccept}
 						onReject={onReject}
 						isWaiting={applicant.status === 'PROCESSING'}
