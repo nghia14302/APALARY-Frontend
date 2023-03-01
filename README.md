@@ -1,5 +1,5 @@
 # APALARY-Frontend
-A small project at school which application is manage employee in company.
+A small project at school which manage employees of apartment.
 
 ## Road path
 
