@@ -27,7 +27,7 @@ const Applicants = () => {
 	const onTabChange = async (key) => {
 		setActiveKey(key);
 		const res = await apiHandler(applicantAPI, 'get' + key, '', setLoading, token);
-		setFilteredData(res);
+		setFilteredData(res || []);
 	};
 	const onAcceptApplicant = async (id, isAccepted) => {
 		await apiHandler(applicantAPI, 'accept', 'Success', setLoading, id, isAccepted, token).then(
@@ -83,12 +83,7 @@ const Applicants = () => {
 							key='action-applicantColumn'
 							render={(text, record) => (
 								<Space size='middle'>
-									<Link onClick={() => onAcceptApplicant(record.id, true)}>
-										Approve
-									</Link>
-									<Link onClick={() => onAcceptApplicant(record.id, false)}>
-										Reject
-									</Link>
+									<Link to={`/applicants/${record.id}`}>View</Link>
 								</Space>
 							)}
 						/>
