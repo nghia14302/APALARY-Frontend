@@ -18,7 +18,7 @@ module.exports = {
 		},
 	},
 	overrides: [],
-
+	ignorePatterns: ['**/*.test.js'],
 	plugins: ['react'],
 	rules: {
 		'prettier/prettier': ['error', { endOfLine: 'auto' }, { usePrettierrc: true }],
