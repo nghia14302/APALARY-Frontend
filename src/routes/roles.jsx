@@ -1,6 +1,7 @@
 import { routeKey } from '../components/Layout/ManagerItems';
 import Applicants from '../pages/Applicant';
 import ApplicantDetails from '../pages/Applicant/Detail';
+import ApplicationDayLeave from '../pages/Application/DayLeave';
 import ApplicationSalary from '../pages/Application/SalaryIncreasing';
 import Contract from '../pages/Contract/Contract';
 import Contracts from '../pages/Contracts';
@@ -103,6 +104,10 @@ export const managerRoutes = [
 	{
 		path: '/salary',
 		Element: <Salary />,
+	},
+	{
+		path: routeKey.applicationDayLeave,
+		Element: <ApplicationDayLeave />,
 	},
 ];
 export const employeeRoutes = [

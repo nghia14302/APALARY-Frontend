@@ -1,0 +1,79 @@
+import React, { useEffect, useState } from 'react';
+
+import { Table } from 'antd';
+import { Link } from 'react-router-dom';
+
+import Box from '../../../components/Box';
+import CustomCard from '../../../components/Card';
+import CustomTable from '../../../components/Table';
+import { paginationConfig } from '../../../config/ColumnConfig';
+import { tabStatusConfig } from '../../../config/TabsConfig';
+import useSearch from '../../../utils/hooks/useSearch';
+import ApplicationModal from '../Modal';
+import { dayLeaveColumnConfig, salaryColumnConfig } from '../columnConfig';
+
+const { Column } = Table;
+const initData = [
+	{
+		name: 'Salary',
+		description: 'Salary',
+		department: 'Salary',
+		absentDay: new Date().toLocaleDateString(),
+		status: 'Processing',
+	},
+];
+const ApplicationDayLeave = () => {
+	const [data, setData] = useState(initData);
+	const [filteredData, setFilteredData] = useState(initData);
+	const [activeKey, setActiveKey] = useState(tabStatusConfig[0].key);
+	const [search, searchRef, setSearchChange] = useSearch();
+	const [openModal, setOpenModal] = useState(false);
+	const onTabChange = async (value) => {
+		// TODO: call api to get data
+
+		setActiveKey(value);
+	};
+	useEffect(() => {
+		const tmp = data.filter((item) => item.name.toLowerCase().includes(search.toLowerCase()));
+		setFilteredData(tmp);
+	}, [search]);
+	useEffect(() => {
+		const tmp = data.filter((item) => item.status === activeKey);
+		setFilteredData(tmp);
+	}, [activeKey]);
+
+	return (
+		<CustomCard>
+			<CustomTable
+				dataSource={filteredData}
+				onSearch={setSearchChange}
+				activeKey={activeKey}
+				rowKey={(record) => record.id + 'application-day-leave'}
+				onTabChange={onTabChange}
+				pagination={{ ...paginationConfig }}
+			>
+				{dayLeaveColumnConfig.map((column, index) => (
+					<Column
+						key={index + 'application-day-leaves'}
+						title={column.title}
+						dataIndex={column.dataIndex}
+						width={column.width}
+						render={column.render}
+					/>
+				))}
+				<Column
+					title='Action'
+					key='action'
+					render={(text, record) => (
+						<Box display='flex' key={'action-application-day-leave'}>
+							<Link onClick={() => setOpenModal(true)}>View</Link>
+						</Box>
+					)}
+				/>
+			</CustomTable>
+			<ApplicationModal open={openModal} setOpen={setOpenModal} />
+		</CustomCard>
+	);
+};
+
+export default ApplicationDayLeave;
