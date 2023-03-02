@@ -1,40 +1,46 @@
-import { Routes, Route } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
-import Home from '../pages/Home';
+import { Routes, Route, Navigate } from 'react-router-dom';
+
+import LayoutEveryone from '../components/Layout/LayoutEveryone';
+import LayoutManager from '../components/Layout/LayoutManager';
+import { routeKey } from '../components/Layout/ManagerItems';
+import Contract from '../pages/Contract/Contract';
+import EmDashboard from '../pages/EmDashboard';
+import EmSalary from '../pages/EmSalary/Salary';
+import ErrorPage from '../pages/Errors';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
-
-// public routes here
-const publicRoutes = [
-	{
-		path: '/',
-		Element: <Home />,
-		role: 'everyone',
-	},
-];
-
-// private routes here
-const privateRoutes = [
-	{
-		path: '/admin',
-		Element: <Home />,
-		role: 'admin',
-	},
-];
+import { employeeRoutes, managerRoutes, publicRoutes, roles } from './roles';
 
 const AppRoutes = () => {
 	return (
 		<Routes>
-			<Route path={''} elements={<PublicRoute />}>
+			<Route path={''} element={<PrivateRoute role={roles.HR_MANAGER} />}>
+				{managerRoutes.map((route, index) => (
+					<Route
+						key={index + route.path + 'manager'}
+						element={route.Element}
+						path={route.path}
+					/>
+				))}
+			</Route>
+			<Route path={''} element={<PrivateRoute role={roles.HR_EMPLOYEE} />}>
+				{employeeRoutes.map((route, index) => (
+					<Route key={index} element={route.Element} path={route.path} />
+				))}
+			</Route>
+			<Route path={''} element={<PublicRoute />}>
 				{publicRoutes.map((route, index) => (
-					<Route key={index} element={route.Element} path={route.path} />
+					<Route
+						key={index + route.path + 'public'}
+						element={route.Element}
+						path={route.path}
+					/>
 				))}
 			</Route>
-			<Route path={''} elements={<PrivateRoute />}>
-				{privateRoutes.map((route, index) => (
-					<Route key={index} element={route.Element} path={route.path} />
-				))}
-			</Route>
+			<Route path={'/error/:statusCode'} element={<ErrorPage />} />
+			<Route path={'*'} element={<Navigate to='/error/404' />} />
 		</Routes>
 	);
 };

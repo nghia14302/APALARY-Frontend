@@ -1,18 +1,18 @@
-import React from 'react';
-
 import { Navigate, Outlet } from 'react-router';
+
+import usePersistedState from '../utils/LocalStorage/usePersistedState';
 
 const PrivateRoute = (props) => {
 	const { role } = props;
-	const fakeUser = {
-		name: 'fake',
-		token: 'abc',
-		role: 'admin',
-	};
-	if (fakeUser.token && fakeUser.role == role) {
-		return <Outlet />;
+	const [userRole, setUserRole] = usePersistedState('role');
+	const [token, setToken] = usePersistedState('token');
+	if (!token || token === '') {
+		return <Navigate to='/homepage' />;
 	}
-	return <Navigate to='/login' />;
+	if (userRole !== role) {
+		return <Navigate to='/error/403' />;
+	}
+	return <Outlet />;
 };
 
 export default PrivateRoute;
