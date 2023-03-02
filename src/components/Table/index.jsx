@@ -8,7 +8,7 @@ import SearchBar from '../SearchBar';
 
 import { PlusOutlined } from '@ant-design/icons';
 
-export const CustomTable = ({
+const CustomTable = ({
 	addNewButton,
 	columns,
 	onSearch,
@@ -25,7 +25,7 @@ export const CustomTable = ({
 						<Col>
 							{onTabChange && (
 								<Tabs
-									defaultActiveKey='PROCESSING'
+									defaultActiveKey='Processing'
 									activeKey={activeKey}
 									onChange={onTabChange}
 									items={tabStatusConfig.map((item) => item)}

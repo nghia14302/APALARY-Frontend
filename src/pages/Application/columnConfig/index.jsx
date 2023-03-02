@@ -1,7 +1,3 @@
-import { Link } from 'react-router-dom';
-
-import { routeKey } from '../../../components/Layout/ManagerItems';
-
 export const salaryColumnConfig = [
 	{
 		title: 'Full name',

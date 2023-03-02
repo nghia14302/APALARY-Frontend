@@ -1,43 +1,71 @@
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-import { Modal, Typography } from 'antd';
+import { Table, Typography } from 'antd';
 import { Link } from 'react-router-dom';
 
 import Box from '../../../components/Box';
 import CustomCard from '../../../components/Card';
 import CustomTable from '../../../components/Table';
+import { paginationConfig } from '../../../config/ColumnConfig';
+import { tabStatusConfig } from '../../../config/TabsConfig';
 import useSearch from '../../../utils/hooks/useSearch';
 import ApplicationModal from '../Modal';
 import { salaryColumnConfig } from '../columnConfig';
 
+const { Column } = Table;
+const initData = [
+	{
+		name: 'Salary',
+		description: 'Salary',
+		department: 'Salary',
+		baseSalary: 'Salary',
+		status: 'Processing',
+	},
+];
 const ApplicationSalary = () => {
-	const [data, setData] = useState([
-		{
-			name: 'Salary',
-			description: 'Salary',
-			department: 'Salary',
-			baseSalary: 'Salary',
-		},
-	]);
+	const [data, setData] = useState(initData);
+	const [filteredData, setFilteredData] = useState(initData);
+	const [activeKey, setActiveKey] = useState(tabStatusConfig[0].key);
 	const [search, searchRef, setSearchChange] = useSearch();
 	const [openModal, setOpenModal] = useState(false);
+	const onTabChange = async (value) => {
+		// TODO: call api to get data
+
+		setActiveKey(value);
+	};
+	useEffect(() => {
+		const tmp = data.filter((item) => item.name.toLowerCase().includes(search.toLowerCase()));
+		setFilteredData(tmp);
+	}, [search]);
+	useEffect(() => {
+		const tmp = data.filter((item) => item.status === activeKey);
+		setFilteredData(tmp);
+	}, [activeKey]);
+
 	return (
 		<CustomCard>
-			<CustomTable dataSource={data} onSearch={setSearchChange}>
+			<CustomTable
+				dataSource={filteredData}
+				onSearch={setSearchChange}
+				activeKey={activeKey}
+				rowKey={(record) => record.id + 'application-salary'}
+				onTabChange={onTabChange}
+				pagination={{ ...paginationConfig }}
+			>
 				{salaryColumnConfig.map((column, index) => (
-					<CustomTable.Column
-						key={index}
+					<Column
+						key={index + 'application-salary'}
 						title={column.title}
 						dataIndex={column.dataIndex}
 						width={column.width}
 						render={column.render}
 					/>
 				))}
-				<CustomTable.Column
+				<Column
 					title='Action'
 					key='action'
 					render={(text, record) => (
-						<Box display='flex' justifyContent='center'>
+						<Box display='flex' key={'action-application-salary'}>
 							<Link onClick={() => setOpenModal(true)}>View</Link>
 						</Box>
 					)}
