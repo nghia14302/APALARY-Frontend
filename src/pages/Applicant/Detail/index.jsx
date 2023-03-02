@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
-import { Button, Form, Input, Modal, Typography } from 'antd';
-import { useParams } from 'react-router-dom';
+import { Button, Col, Form, Input, Modal, Row, Skeleton, Typography } from 'antd';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import CustomCard from '../../../components/Card';
 import PDFReader from '../../../components/PDFReder';
@@ -14,37 +14,61 @@ const { Title } = Typography;
 const ApplicantDetails = () => {
 	const params = useParams();
 	const [token] = usePersistedState('token');
+	const navigate = useNavigate();
 	const [applicant, setApplicant] = React.useState({});
 	const [loading, setLoading] = React.useState(false);
 	useEffect(() => {
 		const fetch = async () => {
 			const res = await apiHandler(applicantAPI, 'getOne', '', setLoading, params.id, token);
 			// convertBaseToFile(res.cv, 'cv' + res.id);
+			console.log(res.cv);
 			setApplicant(res);
 		};
+
 		fetch();
 	}, []);
+	const onAccept = async () => {
+		await apiHandler(applicantAPI, 'accept', 'Success', setLoading, params.id, true, token);
+		navigate('/applicants');
+	};
+	const onReject = async () => {
+		await apiHandler(applicantAPI, 'accept', 'Success', setLoading, params.id, false, token);
+		navigate('/applicants');
+	};
 	return (
 		<CustomCard>
 			<Title>Applicant Information</Title>
-			<Form layout='vertical'>
-				{applicantFormConfig.map((item) => {
-					return (
-						<Form.Item key={item.label + 'applicant-information'} label={item.label}>
-							{item.key == 'gender' ? (
-								<Input
-									style={{ width: '100%' }}
-									value={gender[applicant[item.key]]}
-									readOnly
-								/>
-							) : (
-								<Input style={{ width: '100%' }} value={applicant[item.key]} />
-							)}
-						</Form.Item>
-					);
-				})}
-				<PDFReader />
-			</Form>
+			{loading ? (
+				<Skeleton />
+			) : (
+				<Form layout='vertical'>
+					{applicantFormConfig.map((item) => {
+						return (
+							<Form.Item
+								key={item.label + 'applicant-information'}
+								label={item.label}
+							>
+								{item.key == 'gender' ? (
+									<Input
+										style={{ width: '100%' }}
+										value={gender[applicant[item.key]]}
+										readOnly
+									/>
+								) : (
+									<Input style={{ width: '100%' }} value={applicant[item.key]} />
+								)}
+							</Form.Item>
+						);
+					})}
+					<PDFReader
+						file={applicant.cv}
+						id={applicant.id}
+						onAccept={onAccept}
+						onReject={onReject}
+						isWaiting={applicant.status === 'PROCESSING'}
+					/>
+				</Form>
+			)}
 		</CustomCard>
 	);
 };

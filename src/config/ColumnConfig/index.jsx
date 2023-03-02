@@ -2,6 +2,7 @@ import { Typography } from 'antd';
 import { Link } from 'react-router-dom';
 
 import { routeKey } from '../../components/Layout/ManagerItems';
+import { gender } from '../../pages/Applicant/Detail/config';
 import { getValueFromBlock } from '../../utils/DraftjsHelper';
 
 const { Text } = Typography;
@@ -27,6 +28,7 @@ export const applicantColumns = [
 		title: 'Gender',
 		dataIndex: 'gender',
 		sorter: true,
+		render: (value, record) => <Text>{gender[value]}</Text>,
 	},
 ];
 
