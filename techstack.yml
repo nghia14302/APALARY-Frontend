@@ -2,7 +2,7 @@ repo_name: nghianguyent/APALARY-Frontend
 report_id: 9c4decca767a82de94365def29a748fc
 version: 0.1
 repo_type: Public
-timestamp: '2024-01-27T14:02:35+00:00'
+timestamp: '2024-02-29T19:38:37+00:00'
 requested_by: nghianguyent
 provider: github
 branch: main
@@ -44,7 +44,7 @@ tools:
   last_updated_by: unknown
   last_updated_on: 2023-02-17 02:45:18.000000000 Z
 - name: DraftJS
-  description: 'A framework for building rich text editors '
+  description: A framework for building rich text editors
   website_url: https://draftjs.org
   version: 0.11.7
   license: MIT
@@ -164,7 +164,7 @@ tools:
   last_updated_by: nghia
   last_updated_on: 2023-02-08 13:18:57.000000000 Z
 - name: Prettier
-  description: 'Prettier is an opinionated code formatter. '
+  description: Prettier is an opinionated code formatter.
   website_url: https://prettier.io/
   version: 2.8.4
   license: MIT
